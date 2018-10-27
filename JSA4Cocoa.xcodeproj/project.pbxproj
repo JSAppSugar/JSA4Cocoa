@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		F762C101218409C9004BBBC9 /* JSA4Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F762C0F7218409C9004BBBC9 /* JSA4Cocoa.framework */; };
 		F762C106218409C9004BBBC9 /* JSA4CocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C105218409C9004BBBC9 /* JSA4CocoaTests.m */; };
-		F762C108218409C9004BBBC9 /* JSA4Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C0FA218409C9004BBBC9 /* JSA4Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F762C11621840ECA004BBBC9 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = F762C11521840EC9004BBBC9 /* Assets */; };
+		F762C11B21840F8C004BBBC9 /* JSA4Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C11921840F8C004BBBC9 /* JSA4Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F762C11C21840F8C004BBBC9 /* JSA4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C11A21840F8C004BBBC9 /* JSA4Cocoa.m */; };
+		F762C11D21840FE1004BBBC9 /* JSAppSugar.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C11821840F50004BBBC9 /* JSAppSugar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,11 +27,14 @@
 
 /* Begin PBXFileReference section */
 		F762C0F7218409C9004BBBC9 /* JSA4Cocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSA4Cocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F762C0FA218409C9004BBBC9 /* JSA4Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSA4Cocoa.h; sourceTree = "<group>"; };
 		F762C0FB218409C9004BBBC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F762C100218409C9004BBBC9 /* JSA4CocoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSA4CocoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F762C105218409C9004BBBC9 /* JSA4CocoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSA4CocoaTests.m; sourceTree = "<group>"; };
 		F762C107218409C9004BBBC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F762C11521840EC9004BBBC9 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
+		F762C11821840F50004BBBC9 /* JSAppSugar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAppSugar.h; sourceTree = "<group>"; };
+		F762C11921840F8C004BBBC9 /* JSA4Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSA4Cocoa.h; sourceTree = "<group>"; };
+		F762C11A21840F8C004BBBC9 /* JSA4Cocoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSA4Cocoa.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,7 @@
 		F762C0ED218409C9004BBBC9 = {
 			isa = PBXGroup;
 			children = (
+				F762C11521840EC9004BBBC9 /* Assets */,
 				F762C11221840BE9004BBBC9 /* Target Support Files */,
 				F762C0F9218409C9004BBBC9 /* JSA4Cocoa */,
 				F762C104218409C9004BBBC9 /* JSA4CocoaTests */,
@@ -72,7 +79,9 @@
 		F762C0F9218409C9004BBBC9 /* JSA4Cocoa */ = {
 			isa = PBXGroup;
 			children = (
-				F762C0FA218409C9004BBBC9 /* JSA4Cocoa.h */,
+				F762C11721840F0D004BBBC9 /* Classes */,
+				F762C11821840F50004BBBC9 /* JSAppSugar.h */,
+				F762C11921840F8C004BBBC9 /* JSA4Cocoa.h */,
 			);
 			path = JSA4Cocoa;
 			sourceTree = "<group>";
@@ -110,6 +119,14 @@
 			path = JSA4CocoaTests;
 			sourceTree = "<group>";
 		};
+		F762C11721840F0D004BBBC9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F762C11A21840F8C004BBBC9 /* JSA4Cocoa.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -117,7 +134,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F762C108218409C9004BBBC9 /* JSA4Cocoa.h in Headers */,
+				F762C11B21840F8C004BBBC9 /* JSA4Cocoa.h in Headers */,
+				F762C11D21840FE1004BBBC9 /* JSAppSugar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F762C11621840ECA004BBBC9 /* Assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F762C11C21840F8C004BBBC9 /* JSA4Cocoa.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

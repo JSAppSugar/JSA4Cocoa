@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <JSA4Cocoa/JSA4Cocoa.h>
 
 @interface JSA4CocoaTests : XCTestCase
 
@@ -25,6 +26,8 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    JSA4Cocoa *jsa = [[JSA4Cocoa alloc] init];
+    XCTAssertNotNil(jsa);
 }
 
 
