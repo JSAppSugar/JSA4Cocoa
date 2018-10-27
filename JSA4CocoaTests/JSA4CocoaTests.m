@@ -23,12 +23,16 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-    JSA4Cocoa *jsa = [[JSA4Cocoa alloc] init];
-    XCTAssertNotNil(jsa);
+- (void)testDefaultJSClassLoader {
+    DefaultJSClassLoader *loader = [[DefaultJSClassLoader alloc] initWithNSBundle: [NSBundle bundleForClass: [JSA4CocoaTests class]]];
+    XCTAssertNil([loader loadJSClassWithName:@"TestObject"]);
+    XCTAssertNotNil([loader loadJSClassWithName:@"js.test.TestObject"]);
 }
 
+- (void)testJSA4CocoaInit {
+    JSA4Cocoa *jsa = [[JSA4Cocoa alloc] init];
+    [jsa startEngine];
+    XCTAssertNotNil(jsa);
+}
 
 @end

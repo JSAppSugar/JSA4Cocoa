@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		F762C101218409C9004BBBC9 /* JSA4Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F762C0F7218409C9004BBBC9 /* JSA4Cocoa.framework */; };
 		F762C106218409C9004BBBC9 /* JSA4CocoaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C105218409C9004BBBC9 /* JSA4CocoaTests.m */; };
-		F762C11621840ECA004BBBC9 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = F762C11521840EC9004BBBC9 /* Assets */; };
 		F762C11B21840F8C004BBBC9 /* JSA4Cocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C11921840F8C004BBBC9 /* JSA4Cocoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F762C11C21840F8C004BBBC9 /* JSA4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C11A21840F8C004BBBC9 /* JSA4Cocoa.m */; };
 		F762C11D21840FE1004BBBC9 /* JSAppSugar.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C11821840F50004BBBC9 /* JSAppSugar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F762C12021841569004BBBC9 /* DefaultJSClassLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C11E21841569004BBBC9 /* DefaultJSClassLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F762C12121841569004BBBC9 /* DefaultJSClassLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C11F21841569004BBBC9 /* DefaultJSClassLoader.m */; };
+		F762C124218418B8004BBBC9 /* JSAppSugar.js in Resources */ = {isa = PBXBuildFile; fileRef = F762C123218418B8004BBBC9 /* JSAppSugar.js */; };
+		F762C126218419C1004BBBC9 /* js in Resources */ = {isa = PBXBuildFile; fileRef = F762C125218419C1004BBBC9 /* js */; };
+		F762C12B21847B3B004BBBC9 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F762C12A21847B3B004BBBC9 /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,10 +35,15 @@
 		F762C100218409C9004BBBC9 /* JSA4CocoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSA4CocoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F762C105218409C9004BBBC9 /* JSA4CocoaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSA4CocoaTests.m; sourceTree = "<group>"; };
 		F762C107218409C9004BBBC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F762C11521840EC9004BBBC9 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
 		F762C11821840F50004BBBC9 /* JSAppSugar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAppSugar.h; sourceTree = "<group>"; };
 		F762C11921840F8C004BBBC9 /* JSA4Cocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSA4Cocoa.h; sourceTree = "<group>"; };
 		F762C11A21840F8C004BBBC9 /* JSA4Cocoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSA4Cocoa.m; sourceTree = "<group>"; };
+		F762C11E21841569004BBBC9 /* DefaultJSClassLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultJSClassLoader.h; sourceTree = "<group>"; };
+		F762C11F21841569004BBBC9 /* DefaultJSClassLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultJSClassLoader.m; sourceTree = "<group>"; };
+		F762C123218418B8004BBBC9 /* JSAppSugar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = JSAppSugar.js; sourceTree = "<group>"; };
+		F762C125218419C1004BBBC9 /* js */ = {isa = PBXFileReference; lastKnownFileType = folder; path = js; sourceTree = "<group>"; };
+		F762C12821847AC8004BBBC9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F762C12A21847B3B004BBBC9 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F762C12B21847B3B004BBBC9 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,11 +69,12 @@
 		F762C0ED218409C9004BBBC9 = {
 			isa = PBXGroup;
 			children = (
-				F762C11521840EC9004BBBC9 /* Assets */,
 				F762C11221840BE9004BBBC9 /* Target Support Files */,
+				F762C12221841811004BBBC9 /* Assets */,
 				F762C0F9218409C9004BBBC9 /* JSA4Cocoa */,
 				F762C104218409C9004BBBC9 /* JSA4CocoaTests */,
 				F762C0F8218409C9004BBBC9 /* Products */,
+				F762C12721847AC8004BBBC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,8 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				F762C11721840F0D004BBBC9 /* Classes */,
-				F762C11821840F50004BBBC9 /* JSAppSugar.h */,
 				F762C11921840F8C004BBBC9 /* JSA4Cocoa.h */,
+				F762C11821840F50004BBBC9 /* JSAppSugar.h */,
+				F762C11E21841569004BBBC9 /* DefaultJSClassLoader.h */,
 			);
 			path = JSA4Cocoa;
 			sourceTree = "<group>";
@@ -89,6 +101,7 @@
 		F762C104218409C9004BBBC9 /* JSA4CocoaTests */ = {
 			isa = PBXGroup;
 			children = (
+				F762C125218419C1004BBBC9 /* js */,
 				F762C105218409C9004BBBC9 /* JSA4CocoaTests.m */,
 			);
 			path = JSA4CocoaTests;
@@ -123,8 +136,26 @@
 			isa = PBXGroup;
 			children = (
 				F762C11A21840F8C004BBBC9 /* JSA4Cocoa.m */,
+				F762C11F21841569004BBBC9 /* DefaultJSClassLoader.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		F762C12221841811004BBBC9 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F762C123218418B8004BBBC9 /* JSAppSugar.js */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F762C12721847AC8004BBBC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F762C12A21847B3B004BBBC9 /* JavaScriptCore.framework */,
+				F762C12821847AC8004BBBC9 /* UIKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +167,7 @@
 			files = (
 				F762C11B21840F8C004BBBC9 /* JSA4Cocoa.h in Headers */,
 				F762C11D21840FE1004BBBC9 /* JSAppSugar.h in Headers */,
+				F762C12021841569004BBBC9 /* DefaultJSClassLoader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F762C11621840ECA004BBBC9 /* Assets in Resources */,
+				F762C124218418B8004BBBC9 /* JSAppSugar.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F762C126218419C1004BBBC9 /* js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F762C12121841569004BBBC9 /* DefaultJSClassLoader.m in Sources */,
 				F762C11C21840F8C004BBBC9 /* JSA4Cocoa.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

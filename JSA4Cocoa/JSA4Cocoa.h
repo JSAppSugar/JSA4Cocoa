@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JSAppSugar.h"
+#import "DefaultJSClassLoader.h"
 
 @interface JSA4Cocoa : NSObject<JSAppSugar>
 
@@ -15,8 +16,3 @@
 
 @end
 
-@protocol JSClassLoader <NSObject>
-
--(NSString *) loadJSClassWithName:(NSString *) className;
-
-@end
