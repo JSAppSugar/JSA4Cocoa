@@ -12,6 +12,17 @@
 
 @interface JSA4Cocoa : NSObject<JSAppSugar>
 
+/*!
+ @method
+ @abstract Set up a JS class loader that you implement on your own.
+ @param loader A implementation of JSClassLoader.
+ */
+-(void) setJSClassLoader:(id<JSClassLoader>) loader;
+
+/*!
+ @method
+ @abstract start the engine
+ */
 -(void) startEngine;
 
 @end
