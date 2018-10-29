@@ -16,6 +16,6 @@
 
 @interface DefaultJSClassLoader : NSObject<JSClassLoader>
 
--(id) initWithNSBundle:(NSBundle *) bundle;
+-(instancetype) initWithNSBundle:(NSBundle *) bundle;
 
 @end

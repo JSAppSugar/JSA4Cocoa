@@ -22,7 +22,7 @@
     if(![_loadedClasses containsObject:className]){
         NSString* jsaScript = [_jsClassLoader loadJSClassWithName:className];
         if(jsaScript == nil){
-            @throw [NSException exceptionWithName:[NSString stringWithFormat:@"Can't find JS class ",className] reason:nil userInfo:nil];
+            @throw [NSException exceptionWithName:[NSString stringWithFormat:@"Can't find JS class: %@ .",className] reason:nil userInfo:nil];
         }
         [_jsContext evaluateScript:jsaScript];
         [_loadedClasses addObject:className];
@@ -34,12 +34,18 @@
 }
 
 -(void) startEngine{
+    [self startEngineWithLoader: [[DefaultJSClassLoader alloc] initWithNSBundle:[NSBundle bundleForClass: [JSA4Cocoa class]]]];
+}
+    
+-(void) startEngineWithLoader:(id<JSClassLoader>) loader{
     if(_jsContext == nil){
         _loadedClasses = [NSMutableSet new];
         _jsContext = [[JSContext alloc]init];
-        DefaultJSClassLoader *jsLoader = [[DefaultJSClassLoader alloc] initWithNSBundle:[NSBundle bundleForClass: [JSA4Cocoa class]]];
-        [_jsContext evaluateScript: [jsLoader loadJSClassWithName:@"JSAppSugar"]];
+        [_jsContext evaluateScript: [loader loadJSClassWithName:@"JSAppSugar"]];
         f_newClass = _jsContext[@"$newClass"];
+        if(_jsClassLoader == nil){
+            _jsClassLoader = [[DefaultJSClassLoader alloc] init];
+        }
     }
 }
 

@@ -12,6 +12,6 @@
 
 @interface JSAObjectCocoa : NSObject<JSAObject>
 
--(id) initWithJSValue:(JSValue *)value;
+-(instancetype) initWithJSValue:(JSValue *)value;
 
 @end

@@ -21,9 +21,16 @@
 
 /*!
  @method
- @abstract start the engine
+ @abstract start engine
  */
 -(void) startEngine;
+
+/*!
+ @method
+ @abstract Start engine with given JSClassLoader
+ @param loader A implementation of JSClassLoader.
+ */
+-(void) startEngineWithLoader:(id<JSClassLoader>) loader;
 
 @end
 

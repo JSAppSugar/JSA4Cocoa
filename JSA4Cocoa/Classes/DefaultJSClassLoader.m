@@ -12,14 +12,14 @@
     NSBundle *_bundle;
 }
 
--(id) init{
+-(instancetype) init{
     if(self = [super init]){
         _bundle = [NSBundle mainBundle];
     }
     return self;
 }
 
--(id) initWithNSBundle:(NSBundle *) bundle{
+-(instancetype) initWithNSBundle:(NSBundle *) bundle{
     if(self = [super init]){
         _bundle = bundle;
     }

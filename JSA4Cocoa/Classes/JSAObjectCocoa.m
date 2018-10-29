@@ -12,7 +12,7 @@
     JSValue *_jsValue;
 }
 
--(id) initWithJSValue:(JSValue *)value{
+-(instancetype) initWithJSValue:(JSValue *)value{
     if(self = [super init]){
         _jsValue = value;
     }
