@@ -41,7 +41,28 @@
     if(_jsContext == nil){
         _loadedClasses = [NSMutableSet new];
         _jsContext = [[JSContext alloc]init];
-        [_jsContext evaluateScript: [loader loadJSClassWithName:@"JSAppSugar"]];
+        
+        NSString *jsa4CScript = [loader loadJSClassWithName:@"JSA4Cocoa"];
+        NSString *jsaScript = [loader loadJSClassWithName:@"JSAppSugar"];
+        if(jsa4CScript == nil){
+            @throw [NSException exceptionWithName:@"JSA4Cocoa.js not found" reason:nil userInfo:nil];
+        }
+        if(jsaScript == nil){
+            @throw [NSException exceptionWithName:@"JSAppSugar.js not found" reason:nil userInfo:nil];
+        }
+        
+        JSA4Cocoa __weak * SELF = self;
+        _jsContext[@"$log"] = ^(NSString *s){
+            NSLog(@"$> %@",s);
+        };
+        _jsContext[@"$oc_import"] = ^(NSArray* classes){
+            for(NSString* className in classes){
+                [SELF loadJSClassWithName:className];
+            }
+        };
+        
+        [_jsContext evaluateScript: jsa4CScript];
+        [_jsContext evaluateScript: jsaScript];
         f_newClass = _jsContext[@"$newClass"];
         if(_jsClassLoader == nil){
             _jsClassLoader = [[DefaultJSClassLoader alloc] init];

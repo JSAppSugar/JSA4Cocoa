@@ -43,4 +43,10 @@
     XCTAssertEqualObjects(@"a", a);
 }
 
+-(void)testNewOCClass {
+    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+    NSString *a = [testObject invokeMethod:@"nativeGetA"];
+    XCTAssertEqualObjects(@"-", a);
+}
+
 @end
