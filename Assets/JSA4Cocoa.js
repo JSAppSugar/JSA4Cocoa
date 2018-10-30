@@ -9,7 +9,7 @@ var $engine = $engine || {};
 	$engine.lang = "oc";
 
 	$engine.$init = function(){
-		
+		this.$this = $oc_new(this.constructor.$impl,"init",[]);
 	};
 
 	$engine.$function = function(define){

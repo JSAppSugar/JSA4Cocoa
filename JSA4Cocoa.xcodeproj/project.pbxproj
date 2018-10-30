@@ -21,6 +21,8 @@
 		F762C13221860C25004BBBC9 /* JSAObjectCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C13021860C25004BBBC9 /* JSAObjectCocoa.m */; };
 		F762C1342186FAE8004BBBC9 /* JSA4Cocoa.js in Resources */ = {isa = PBXBuildFile; fileRef = F762C1332186FAE8004BBBC9 /* JSA4Cocoa.js */; };
 		F762C1382186FEC3004BBBC9 /* TestOCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C1372186FEC3004BBBC9 /* TestOCObject.m */; };
+		F762C140218763DD004BBBC9 /* JSAObjectAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C13E218763DD004BBBC9 /* JSAObjectAccessor.h */; };
+		F762C141218763DD004BBBC9 /* JSAObjectAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C13F218763DD004BBBC9 /* JSAObjectAccessor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		F762C1332186FAE8004BBBC9 /* JSA4Cocoa.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = JSA4Cocoa.js; sourceTree = "<group>"; };
 		F762C1362186FEC3004BBBC9 /* TestOCObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestOCObject.h; sourceTree = "<group>"; };
 		F762C1372186FEC3004BBBC9 /* TestOCObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestOCObject.m; sourceTree = "<group>"; };
+		F762C13D218763B8004BBBC9 /* JSAHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAHelper.h; sourceTree = "<group>"; };
+		F762C13E218763DD004BBBC9 /* JSAObjectAccessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAObjectAccessor.h; sourceTree = "<group>"; };
+		F762C13F218763DD004BBBC9 /* JSAObjectAccessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAObjectAccessor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +154,9 @@
 				F762C11F21841569004BBBC9 /* DefaultJSClassLoader.m */,
 				F762C12F21860C25004BBBC9 /* JSAObjectCocoa.h */,
 				F762C13021860C25004BBBC9 /* JSAObjectCocoa.m */,
+				F762C13D218763B8004BBBC9 /* JSAHelper.h */,
+				F762C13E218763DD004BBBC9 /* JSAObjectAccessor.h */,
+				F762C13F218763DD004BBBC9 /* JSAObjectAccessor.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -196,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F762C13121860C25004BBBC9 /* JSAObjectCocoa.h in Headers */,
+				F762C140218763DD004BBBC9 /* JSAObjectAccessor.h in Headers */,
 				F762C11B21840F8C004BBBC9 /* JSA4Cocoa.h in Headers */,
 				F762C11D21840FE1004BBBC9 /* JSAppSugar.h in Headers */,
 				F762C12021841569004BBBC9 /* DefaultJSClassLoader.h in Headers */,
@@ -303,6 +312,7 @@
 			files = (
 				F762C12121841569004BBBC9 /* DefaultJSClassLoader.m in Sources */,
 				F762C13221860C25004BBBC9 /* JSAObjectCocoa.m in Sources */,
+				F762C141218763DD004BBBC9 /* JSAObjectAccessor.m in Sources */,
 				F762C11C21840F8C004BBBC9 /* JSA4Cocoa.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

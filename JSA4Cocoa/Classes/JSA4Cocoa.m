@@ -9,6 +9,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "JSA4Cocoa.h"
 #import "JSAObjectCocoa.h"
+#import "JSAObjectAccessor.h"
 
 @implementation JSA4Cocoa{
     JSContext *_jsContext;
@@ -53,12 +54,18 @@
         
         JSA4Cocoa __weak * SELF = self;
         _jsContext[@"$log"] = ^(NSString *s){
-            NSLog(@"$> %@",s);
+            NSLog(@"%@",s);
         };
         _jsContext[@"$oc_import"] = ^(NSArray* classes){
             for(NSString* className in classes){
                 [SELF loadJSClassWithName:className];
             }
+        };
+        _jsContext[@"$oc_new"] = ^(NSString *className,NSString* initMethod,NSArray *arguments){
+            return [JSAObjectAccessor constructWithClass:className InitMethod:initMethod Arguments:arguments];
+        };
+        _jsContext[@"$oc_invoke"] = ^(id $this,NSString* method,NSArray* arguments){
+            
         };
         
         [_jsContext evaluateScript: jsa4CScript];
