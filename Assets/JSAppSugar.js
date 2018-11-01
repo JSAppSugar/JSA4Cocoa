@@ -13,7 +13,11 @@ JSA.$global = this;
 
 	var f_$constructor = function(){
 		if(!initializing && this.$init){
-			this.$init.apply(this, arguments);
+			var args = undefined;
+			if(arguments.length>0 && arguments[0]){
+				args = arguments[0]["$arguments"];
+			}
+			this.$init.apply(this, args?args:arguments);
 		}
 	};
 
@@ -84,7 +88,7 @@ JSA.$global = this;
 			var SuperClassProto = SuperClass.prototype;
 			if(define["$implementation"]){
 				JSAClass.$impl = define["$implementation"]['$'+engine.lang];
-				JSAClass.prototype.$init = engine.$init;
+				JSAClass.prototype.$init = engine.$init(define["$init"]?define["$init"]['$'+engine.lang]:undefined);
 				for(var key in define){
 					if(key.charAt(0)==='$') continue;
 					JSAClass.prototype[key] = engine.$function(define[key]["$"+engine.lang]);
@@ -93,7 +97,7 @@ JSA.$global = this;
 				for(var key in define){
 					if(key.charAt(0)==='$' && key !== '$init')
 						continue;
-					if(typeof define[key] == "function" && typeof SuperClassProto[key] == "function"){
+					if(typeof define[key] == "function"){
 						JSAClass.prototype[key] =(
 							function(defineFunction){
 								return function(){
@@ -118,8 +122,7 @@ JSA.$global = this;
 		var cls = f_findClass(className);
 		var o = undefined;
 		if(cls){
-			o = new cls();
-			o.$init.apply(o,args);
+			o = new cls({"$arguments":args});
 		}
 		return o;
 	};

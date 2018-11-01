@@ -8,12 +8,15 @@ var $engine = $engine || {};
 
 	$engine.lang = "oc";
 
-	$engine.$init = function(){
-		this.$this = $oc_new(this.constructor.$impl,"init",[]);
+	$engine.$init = function(define){
+		return (function(){
+			this.$this = $oc_new(this.constructor.$impl,define?define:"init",[]);
+		});
 	};
 
 	$engine.$function = function(define){
 		return (function(){
+			return $oc_invoke(this.$this,define,arguments);
 		});
 	}
 

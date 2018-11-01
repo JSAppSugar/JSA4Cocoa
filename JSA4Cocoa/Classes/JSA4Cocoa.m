@@ -64,8 +64,8 @@
         _jsContext[@"$oc_new"] = ^(NSString *className,NSString* initMethod,NSArray *arguments){
             return [JSAObjectAccessor constructWithClass:className InitMethod:initMethod Arguments:arguments];
         };
-        _jsContext[@"$oc_invoke"] = ^(id $this,NSString* method,NSArray* arguments){
-            
+        _jsContext[@"$oc_invoke"] = ^(id object,NSString* method,NSArray* arguments){
+            return [JSAObjectAccessor invokeObject:object Method:method Arguments:arguments];
         };
         
         [_jsContext evaluateScript: jsa4CScript];
