@@ -43,6 +43,12 @@
     XCTAssertEqualObjects(@"a", a);
 }
 
+- (void)testJSSuper {
+    id<JSAObject> testObjectB = [jsa newClass:@"test.jsa.TestObjectB" Arguments:@[@"a",@"b"]];
+    NSString* b = [testObjectB invokeMethod:@"getB"];
+    XCTAssertEqualObjects(@"ab", b);
+}
+
 -(void)testNewOCClass {
     id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
     NSString *a = [testObject invokeMethod:@"nativeGetA"];

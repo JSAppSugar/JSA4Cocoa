@@ -25,6 +25,12 @@
         if(jsaScript == nil){
             @throw [NSException exceptionWithName:[NSString stringWithFormat:@"Can't find JS class: %@ .",className] reason:nil userInfo:nil];
         }
+        
+        NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:@"\\$super[ ]*\\(" options:0 error:nil];
+        jsaScript = [regularExpression stringByReplacingMatchesInString:jsaScript options:0 range:NSMakeRange(0, jsaScript.length) withTemplate:@"this.\\$super\\(\"\\$init\"\\)\\("];
+        regularExpression = [NSRegularExpression regularExpressionWithPattern:@"(\\$super)[ ]*\\.[ ]*([0-9a-zA-Z\\$_]+)[ ]*\\(" options:0 error:nil];
+        jsaScript = [regularExpression stringByReplacingMatchesInString:jsaScript options:0 range:NSMakeRange(0, jsaScript.length) withTemplate:@"this\\.$1(\"$2\")\\("];
+        
         [_jsContext evaluateScript:jsaScript];
         [_loadedClasses addObject:className];
     }
