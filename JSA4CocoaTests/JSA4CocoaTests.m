@@ -102,6 +102,18 @@
         id r = [testObject invokeMethod:@"testNull" Arguments:@[o]];
         XCTAssertNil(r);
     }
+    {
+        NSString* r = [testObject invokeMethod:@"testString" Arguments:@[@"s"]];
+        XCTAssertEqualObjects(@"s", r);
+    }
+    {
+        NSNumber* r = [testObject invokeMethod:@"testInt" Arguments:@[@1]];
+        XCTAssertEqual(1, [r intValue]);
+    }
+    {
+        NSNumber* r = [testObject invokeMethod:@"testBool" Arguments:@[@true]];
+        XCTAssertEqual(true, [r boolValue]);
+    }
 }
 
 @end
