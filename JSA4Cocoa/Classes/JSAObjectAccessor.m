@@ -18,6 +18,11 @@
     return [JSAObjectAccessor invokeObject:newObject Method:initMethod Arguments:arguments];
 }
 
++(id) invokeClass:(NSString *) className Method:(NSString *) method Arguments:(NSArray *)arguments{
+    Class class = NSClassFromString(className);
+    return [JSAObjectAccessor invokeObject:class Method:method Arguments:arguments];
+}
+
 +(id) invokeObject:(id) object Method:(NSString *) method Arguments:(NSArray *)arguments{
     if(object == nil) return nil;
     Class class = [object class];

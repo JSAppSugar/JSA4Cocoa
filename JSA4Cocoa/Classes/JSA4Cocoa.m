@@ -73,6 +73,9 @@
         _jsContext[@"$oc_invoke"] = ^(id object,NSString* method,NSArray* arguments){
             return [JSAObjectAccessor invokeObject:object Method:method Arguments:arguments];
         };
+        _jsContext[@"$$oc_classInvoke"] = ^(NSString *className,NSString* method,NSArray* arguments){
+            return nil;
+        };
         
         [_jsContext evaluateScript: jsa4CScript];
         [_jsContext evaluateScript: jsaScript];

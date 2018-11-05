@@ -14,4 +14,6 @@
 
 +(id) invokeObject:(id) object Method:(NSString *) method Arguments:(NSArray *)arguments;
 
++(id) invokeClass:(NSString *) className Method:(NSString *) method Arguments:(NSArray *)arguments;
+
 @end

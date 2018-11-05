@@ -15,8 +15,17 @@ var $engine = $engine || {};
 	};
 
 	$engine.$function = function(define){
+		var method = define;
 		return (function(){
-			return $oc_invoke(this.$this,define,arguments);
+			return $oc_invoke(this.$this,method,arguments);
+		});
+	}
+
+	$engine.$staticFunction = function(define){
+		var method = define;
+		return (function(){
+			var className = this.$impl;
+			return $oc_classInvoke(className,method,arguments);
 		});
 	}
 

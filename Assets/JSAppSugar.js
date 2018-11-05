@@ -13,11 +13,15 @@ JSA.$global = this;
 
 	var f_$constructor = function(){
 		if(!initializing && this.$init){
-			var args = undefined;
-			if(arguments.length>0 && arguments[0]){
-				args = arguments[0]["$arguments"];
+			if(arguments.length>0 && arguments[0] && arguments[0]["$native"]){
+				this.$this = arguments[0]["$native"];
+			}else{
+				var args = undefined;
+				if(arguments.length>0 && arguments[0]){
+					args = arguments[0]["$arguments"];
+				}
+				this.$init.apply(this, args?args:arguments);
 			}
-			this.$init.apply(this, args?args:arguments);
 		}
 	};
 
@@ -93,6 +97,15 @@ JSA.$global = this;
 					if(key.charAt(0)==='$') continue;
 					JSAClass.prototype[key] = engine.$function(define[key]["$"+engine.lang]);
 				}
+				JSAClass.fromNative = function(obj){
+					return new JSAClass({"$native":args});
+				}
+				if(define.$static){
+					var staticDefine = define.$static;
+					for(var key in staticDefine){
+						JSAClass[key] = engine.$staticFunction(staticDefine[key]["$"+engine.lang]);
+					}
+				}
 			}else{
 				for(var key in define){
 					if(key.charAt(0)==='$' && key !== '$init')
@@ -113,6 +126,12 @@ JSA.$global = this;
 						JSAClass.prototype[key] = define[key];
 					}
 				}
+				if(define.$static && typeof define.$static === "object"){
+					var defineStatic = define.$static;
+					for(var key in defineStatic){
+						JSAClass[key] = defineStatic[key];
+					}
+				}
 			}
 
 			f_applyClass(className,JSAClass);
@@ -127,9 +146,17 @@ JSA.$global = this;
 		return o;
 	};
 	JSA.$import = engine.$import;
+	JSA.$classFunction = function(className,methodName,args){
+		var cls = f_findClass(className);
+		if(cls && cls[methodName]){
+			return cls[methodName].apply(cls,args);
+		}
+		return null;
+	}
 }($engine));
 
 $class = JSA.$class;
 $import = JSA.$import;
 $newClass = JSA.$newClass;
+$classFunction = JSA.$classFunction;
 delete $engine;
