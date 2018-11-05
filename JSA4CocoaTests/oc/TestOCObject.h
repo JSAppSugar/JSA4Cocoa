@@ -7,12 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <JSA4Cocoa/JSA4Cocoa.h>
 
 @interface TestOCObject : NSObject
 
--(instancetype) initWithA:(NSString *) a;
++(NSString *) staticA;
 
--(NSString *) a;
+-(instancetype) initWithString:(NSString *) s Int:(int) i;
+-(instancetype) initWithNSDictionary:(NSDictionary *) m;
+
+-(NSString *) getS;
+-(int) getI;
+-(id) testNull:(id) undefined;
+-(NSString *) testString:(NSString *) s;
+-(int) testInt:(int) i;
+-(BOOL) testBool:(BOOL) b;
+-(NSDictionary *) testMap:(NSDictionary *) m;
+-(NSArray *)testArray:(NSArray *) array;
+-(id) testObject:(id) o;
+-(id<JSAObject>) testJSAObject:(id<JSAObject>) jsaObject;
+-(id<JSAFunction>) testJSAFunction:(id<JSAFunction>) func;
 
 @end
 

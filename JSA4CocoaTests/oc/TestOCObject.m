@@ -9,22 +9,104 @@
 #import "TestOCObject.h"
 
 @implementation TestOCObject{
-    NSString *_a;
+    NSString *_s;
+    int _i;
 }
 
 -(instancetype) init{
-    return [self initWithA:@"-"];
+    return [self initWithString:@"-" Int:0];
 }
 
--(instancetype) initWithA:(NSString *) a{
+-(instancetype) initWithString:(NSString *) s Int:(int) i{
     if(self = [super init]){
-        _a = a;
+        _s = s;
+        _i = i;
+    }
+    return self;
+}
+-(instancetype) initWithNSDictionary:(NSDictionary *) m{
+    if(self = [super init]){
+        _s = [m valueForKey:@"s"];
+        _i = [[m valueForKey:@"o"] intValue];
     }
     return self;
 }
 
--(NSString *) a{
-    return _a;
++(NSString *) staticA{
+    return @"a";
+}
+
+-(NSString *) getS{
+    return _s;
+}
+-(int) getI{
+    return _i;
+}
+-(id) testNull:(id) undefined{
+    if(undefined == nil) {
+        return nil;
+    }
+    return @"nil";
+}
+-(NSString *) testString:(NSString *) s{
+    if(s!=nil && [s isKindOfClass:[NSString class]]){
+        return s;
+    }
+    return nil;
+}
+-(int) testInt:(int) i{
+    if( i!=0 ) {
+        return i;
+    }
+    return 0;
+}
+-(BOOL) testBool:(BOOL) b{
+    if(b) {
+        return b;
+    }
+    return false;
+}
+-(NSDictionary *) testMap:(NSDictionary *) m{
+    if( [m count]>0 ) {
+        NSNumber *a = [m valueForKey:@"a"];
+        NSString *b = [m valueForKey:@"b"];
+        if([a intValue] == 1 && [b isEqualToString:@"1"]) {
+            return m;
+        }
+    }
+    return nil;
+}
+-(NSArray *)testArray:(NSArray *) array{
+    if(array.count>0) {
+        NSNumber *a = [array objectAtIndex:0];
+        NSString *b = [array objectAtIndex:1];
+        if([a intValue] == 1 && [b isEqualToString:@"1"]) {
+            return array;
+        }
+    }
+    return nil;
+}
+-(id) testObject:(id) o{
+    if([o class] == [NSObject class]) {
+        return o;
+    }
+    return nil;
+}
+-(id<JSAObject>) testJSAObject:(id<JSAObject>) jsaObject{
+    if([jsaObject conformsToProtocol:@protocol(JSAObject)]) {
+        NSString *a = [jsaObject invokeMethod:@"getA"];
+        if([a isEqualToString:@"a"]) {
+            return jsaObject;
+        }
+    }
+    return nil;
+}
+-(id<JSAFunction>) testJSAFunction:(id<JSAFunction>) jsaFunc{
+    NSString *r = [jsaFunc callWithArguments:@[@"f"]];
+    if([r isEqualToString:@"f"]) {
+        return jsaFunc;
+    }
+    return nil;
 }
 
 @end

@@ -37,22 +37,24 @@
     XCTAssertNotNil([loader loadJSClassWithName:@"test.jsa.TestObject"]);
 }
 
-- (void)testNewJSClass {
-    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@"a"]];
-    NSString *a = [testObject invokeMethod:@"getA"];
-    XCTAssertEqualObjects(@"a", a);
-}
-
 - (void)testJSSuper {
     id<JSAObject> testObjectB = [jsa newClass:@"test.jsa.TestObjectB" Arguments:@[@"a",@"b"]];
     NSString* b = [testObjectB invokeMethod:@"getB"];
     XCTAssertEqualObjects(@"ab", b);
 }
 
--(void)testNewOCClass {
+- (void)testNewJSClass {
+    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@"a"]];
+    NSString *a = [testObject invokeMethod:@"getA"];
+    XCTAssertEqualObjects(@"a", a);
+}
+
+-(void)testTypes {
     id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
-    NSString *a = [testObject invokeMethod:@"nativeGetA"];
-    XCTAssertEqualObjects(@"-", a);
+    {
+        NSString *a = [testObject invokeMethod:@"testNativeInit" Arguments:@[@"a",@1]];
+        XCTAssertEqualObjects(@"a1", a);
+    }
 }
 
 @end
