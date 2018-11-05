@@ -10,7 +10,17 @@ var $engine = $engine || {};
 
 	$engine.$init = function(define){
 		return (function(){
-			this.$this = $oc_new(this.constructor.$impl,define?define:"init",[]);
+			var initMethod = "init";
+			if(arguments.length > 0){
+				for(var i in define){
+					var method = define[i];
+					if(method.match(/:/g).length == arguments.length){
+						initMethod = method;
+						break;
+					}
+				}
+			}
+			this.$this = $oc_new(this.constructor.$impl,initMethod,arguments);
 		});
 	};
 

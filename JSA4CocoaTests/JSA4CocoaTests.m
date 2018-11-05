@@ -44,9 +44,17 @@
 }
 
 - (void)testNewJSClass {
-    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@"a"]];
-    NSString *a = [testObject invokeMethod:@"getA"];
-    XCTAssertEqualObjects(@"a", a);
+    {
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+        NSString *a = [testObject invokeMethod:@"getA"];
+        XCTAssertEqualObjects(@"-", a);
+    }
+    {
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@"a"]];
+        NSString *a = [testObject invokeMethod:@"getA"];
+        XCTAssertEqualObjects(@"a", a);
+    }
+    
 }
 
 -(void)testTypes {
