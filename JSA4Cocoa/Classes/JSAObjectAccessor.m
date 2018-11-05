@@ -74,6 +74,9 @@
             ARGUMENT_CASE('B', BOOL, boolValue)
             
             default:{
+                if([valObj isKindOfClass: [NSNull class]]){
+                    valObj = nil;
+                }
                 [invocation setArgument:&valObj atIndex:i];
                 break;
             }

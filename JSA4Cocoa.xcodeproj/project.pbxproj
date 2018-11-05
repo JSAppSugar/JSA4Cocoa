@@ -23,6 +23,8 @@
 		F762C1382186FEC3004BBBC9 /* TestOCObject.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C1372186FEC3004BBBC9 /* TestOCObject.m */; };
 		F762C140218763DD004BBBC9 /* JSAObjectAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C13E218763DD004BBBC9 /* JSAObjectAccessor.h */; };
 		F762C141218763DD004BBBC9 /* JSAObjectAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C13F218763DD004BBBC9 /* JSAObjectAccessor.m */; };
+		F762C14421902F93004BBBC9 /* JSAConvertor.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C14221902F93004BBBC9 /* JSAConvertor.h */; };
+		F762C14521902F93004BBBC9 /* JSAConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C14321902F93004BBBC9 /* JSAConvertor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		F762C13D218763B8004BBBC9 /* JSAHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAHelper.h; sourceTree = "<group>"; };
 		F762C13E218763DD004BBBC9 /* JSAObjectAccessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAObjectAccessor.h; sourceTree = "<group>"; };
 		F762C13F218763DD004BBBC9 /* JSAObjectAccessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAObjectAccessor.m; sourceTree = "<group>"; };
+		F762C14221902F93004BBBC9 /* JSAConvertor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAConvertor.h; sourceTree = "<group>"; };
+		F762C14321902F93004BBBC9 /* JSAConvertor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAConvertor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,8 @@
 				F762C13D218763B8004BBBC9 /* JSAHelper.h */,
 				F762C13E218763DD004BBBC9 /* JSAObjectAccessor.h */,
 				F762C13F218763DD004BBBC9 /* JSAObjectAccessor.m */,
+				F762C14221902F93004BBBC9 /* JSAConvertor.h */,
+				F762C14321902F93004BBBC9 /* JSAConvertor.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -203,6 +209,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F762C14421902F93004BBBC9 /* JSAConvertor.h in Headers */,
 				F762C13121860C25004BBBC9 /* JSAObjectCocoa.h in Headers */,
 				F762C140218763DD004BBBC9 /* JSAObjectAccessor.h in Headers */,
 				F762C11B21840F8C004BBBC9 /* JSA4Cocoa.h in Headers */,
@@ -314,6 +321,7 @@
 				F762C13221860C25004BBBC9 /* JSAObjectCocoa.m in Sources */,
 				F762C141218763DD004BBBC9 /* JSAObjectAccessor.m in Sources */,
 				F762C11C21840F8C004BBBC9 /* JSA4Cocoa.m in Sources */,
+				F762C14521902F93004BBBC9 /* JSAConvertor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "JSAObjectCocoa.h"
+#import "JSAConvertor.h"
 
 @implementation JSAObjectCocoa{
     JSValue *_jsValue;
@@ -24,7 +25,8 @@
 }
 
 -(id) invokeMethod:(NSString *)method Arguments:(NSArray *)arguments{
-    return  [[_jsValue invokeMethod:method withArguments:arguments] toObject];
+    id value = [[_jsValue invokeMethod:method withArguments:arguments] toObject];
+    return [JSAConvertor js2ocWithObject:value Context:[_jsValue context]];
 }
 
 -(id<JSAWeakObject>) weakObject{
