@@ -13,7 +13,7 @@
 
 @implementation JSA4Cocoa{
     JSContext *_jsContext;
-    id<JSClassLoader> _jsClassLoader;
+    id<JSAClassLoader> _jsClassLoader;
     NSMutableSet *_loadedClasses;
     
     JSValue *f_newClass;
@@ -36,15 +36,15 @@
     }
 }
 
--(void) setJSClassLoader:(id<JSClassLoader>) loader{
+-(void) setJSClassLoader:(id<JSAClassLoader>) loader{
     _jsClassLoader = loader;
 }
 
 -(void) startEngine{
-    [self startEngineWithLoader: [[DefaultJSClassLoader alloc] initWithNSBundle:[NSBundle bundleForClass: [JSA4Cocoa class]]]];
+    [self startEngineWithLoader: [[JSADefaultClassLoader alloc] initWithNSBundle:[NSBundle bundleForClass: [JSA4Cocoa class]]]];
 }
     
--(void) startEngineWithLoader:(id<JSClassLoader>) loader{
+-(void) startEngineWithLoader:(id<JSAClassLoader>) loader{
     if(_jsContext == nil){
         _loadedClasses = [NSMutableSet new];
         _jsContext = [[JSContext alloc]init];
@@ -73,7 +73,7 @@
         _jsContext[@"$oc_invoke"] = ^(id object,NSString* method,NSArray* arguments){
             return [JSAObjectAccessor invokeObject:object Method:method Arguments:arguments];
         };
-        _jsContext[@"$$oc_classInvoke"] = ^(NSString *className,NSString* method,NSArray* arguments){
+        _jsContext[@"$oc_classInvoke"] = ^(NSString *className,NSString* method,NSArray* arguments){
             return nil;
         };
         
@@ -81,7 +81,7 @@
         [_jsContext evaluateScript: jsaScript];
         f_newClass = _jsContext[@"$newClass"];
         if(_jsClassLoader == nil){
-            _jsClassLoader = [[DefaultJSClassLoader alloc] init];
+            _jsClassLoader = [[JSADefaultClassLoader alloc] init];
         }
     }
 }

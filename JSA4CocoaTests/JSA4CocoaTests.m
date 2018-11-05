@@ -21,7 +21,7 @@
     // Put setup code here. This method is called before the invocation of each test method in the class.
     if(jsa == nil){
         jsa = [[JSA4Cocoa alloc]init];
-        DefaultJSClassLoader *loader = [[DefaultJSClassLoader alloc] initWithNSBundle: [NSBundle bundleForClass: [JSA4CocoaTests class]]];
+        JSADefaultClassLoader *loader = [[JSADefaultClassLoader alloc] initWithNSBundle: [NSBundle bundleForClass: [JSA4CocoaTests class]]];
         [jsa setJSClassLoader:loader];
         [jsa startEngine];
     }
@@ -32,7 +32,7 @@
 }
 
 - (void)testDefaultJSClassLoader {
-    DefaultJSClassLoader *loader = [[DefaultJSClassLoader alloc] initWithNSBundle: [NSBundle bundleForClass: [JSA4CocoaTests class]]];
+    JSADefaultClassLoader *loader = [[JSADefaultClassLoader alloc] initWithNSBundle: [NSBundle bundleForClass: [JSA4CocoaTests class]]];
     XCTAssertNil([loader loadJSClassWithName:@"TestObject"]);
     XCTAssertNotNil([loader loadJSClassWithName:@"test.jsa.TestObject"]);
 }
@@ -96,6 +96,11 @@
     {
         NSString *a = [testObject invokeMethod:@"testNativeInit" Arguments:@[@"a",@1]];
         XCTAssertEqualObjects(@"a1", a);
+    }
+    {
+        id o = [NSNull null];
+        id r = [testObject invokeMethod:@"testNull" Arguments:@[o]];
+        XCTAssertNil(r);
     }
 }
 

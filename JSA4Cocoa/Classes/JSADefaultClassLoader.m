@@ -6,9 +6,9 @@
 //  Copyright (c) 2018 Neal. All rights reserved.
 //
 
-#import "DefaultJSClassLoader.h"
+#import "JSAClassLoader.h"
 
-@implementation DefaultJSClassLoader{
+@implementation JSADefaultClassLoader{
     NSBundle *_bundle;
 }
 

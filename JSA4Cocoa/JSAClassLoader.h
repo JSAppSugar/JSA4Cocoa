@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol JSClassLoader <NSObject>
+@protocol JSAClassLoader <NSObject>
 
 -(NSString *) loadJSClassWithName:(NSString *) className;
 
 @end
 
-@interface DefaultJSClassLoader : NSObject<JSClassLoader>
+@interface JSADefaultClassLoader : NSObject<JSAClassLoader>
 
 -(instancetype) initWithNSBundle:(NSBundle *) bundle;
 

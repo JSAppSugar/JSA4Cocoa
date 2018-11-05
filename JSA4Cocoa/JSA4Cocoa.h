@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JSAppSugar.h"
-#import "DefaultJSClassLoader.h"
+#import "JSAClassLoader.h"
 
 @interface JSA4Cocoa : NSObject<JSAppSugar>
 
@@ -17,7 +17,7 @@
  @abstract Set up a JS class loader that you implement on your own.
  @param loader A implementation of JSClassLoader.
  */
--(void) setJSClassLoader:(id<JSClassLoader>) loader;
+-(void) setJSClassLoader:(id<JSAClassLoader>) loader;
 
 /*!
  @method
@@ -30,7 +30,7 @@
  @abstract Start engine with given JSClassLoader
  @param loader A implementation of JSClassLoader.
  */
--(void) startEngineWithLoader:(id<JSClassLoader>) loader;
+-(void) startEngineWithLoader:(id<JSAClassLoader>) loader;
 
 @end
 
