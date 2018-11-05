@@ -11,6 +11,8 @@
 
 @interface JSAConvertor : NSObject
 
-+(id) js2ocWithObject:(id) object Context:(JSContext *) context;
++(id) js2ocWithObject:(id) object;
+
++(id) oc2jsWithObject:(id) object;
 
 @end

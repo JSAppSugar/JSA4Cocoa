@@ -14,4 +14,6 @@
 
 -(instancetype) initWithJSValue:(JSValue *)value;
 
+-(JSValue *) jsValue;
+
 @end

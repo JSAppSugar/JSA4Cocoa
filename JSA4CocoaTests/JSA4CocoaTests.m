@@ -114,6 +114,31 @@
         NSNumber* r = [testObject invokeMethod:@"testBool" Arguments:@[@true]];
         XCTAssertEqual(true, [r boolValue]);
     }
+    {
+        NSDictionary* m = @{@"a":@1,@"b":@"1"};
+        NSDictionary* r = [testObject invokeMethod:@"testMap" Arguments:@[m]];
+        NSNumber* a = [r valueForKey:@"a"];
+        NSString* b = [r valueForKey:@"b"];
+        XCTAssertEqual(1, [a intValue]);
+        XCTAssertEqualObjects(@"1", b);
+    }
+    {
+        NSArray* m = @[@1,@"1"];
+        NSArray* r = [testObject invokeMethod:@"testArray" Arguments:@[m]];
+        NSNumber* a = [r objectAtIndex:0];
+        NSString* b = [r objectAtIndex:1];
+        XCTAssertEqual(1, [a intValue]);
+        XCTAssertEqualObjects(@"1", b);
+    }
+    {
+        NSObject* o = [NSObject new];
+        NSObject* r = [testObject invokeMethod:@"testObject" Arguments:@[o]];
+        XCTAssertEqual(o, r);
+    }{
+        id<JSAObject> o = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@"a"]];
+        id<JSAObject> r = [testObject invokeMethod:@"testJSAObject" Arguments:@[o]];
+        XCTAssertEqualObjects(@"a", [r invokeMethod:@"getA"]);
+    }
 }
 
 @end
