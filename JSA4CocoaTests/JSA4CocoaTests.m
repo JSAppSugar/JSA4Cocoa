@@ -54,7 +54,41 @@
         NSString *a = [testObject invokeMethod:@"getA"];
         XCTAssertEqualObjects(@"a", a);
     }
-    
+    {
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@1]];
+        int a = [[testObject invokeMethod:@"getA"] intValue];
+        XCTAssertEqual(1, a);
+    }
+    {
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@true]];
+        BOOL a = [[testObject invokeMethod:@"getA"] boolValue];
+        XCTAssertEqual(true, a);
+    }
+    {
+        NSDictionary* m = @{@"a":@1,@"b":@"b"};
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[m]];
+        NSDictionary* a = [testObject invokeMethod:@"getA"];
+        XCTAssertEqual(1, [[a valueForKey:@"a"] intValue]);
+        XCTAssertEqualObjects(@"b", [a valueForKey:@"b"]);
+    }
+    {
+        NSArray *array = @[@1,@"a"];
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[array]];
+        NSArray* a = [testObject invokeMethod:@"getA"];
+        XCTAssertEqual(1, [[a objectAtIndex:0] intValue]);
+        XCTAssertEqualObjects(@"a", [a objectAtIndex:1]);
+    }
+    {
+        NSObject *obj = [NSObject new];
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[obj]];
+        id a = [testObject invokeMethod:@"getA"];
+        XCTAssertEqualObjects(obj, a);
+    }{
+        id<JSAObject> obj = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@"a"]];
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject" Arguments:@[obj]];
+        id<JSAObject> a = [testObject invokeMethod:@"getA"];
+        XCTAssertEqualObjects(@"a", [a invokeMethod:@"getA"]);
+    }
 }
 
 -(void)testTypes {
