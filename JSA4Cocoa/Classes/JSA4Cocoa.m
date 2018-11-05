@@ -10,6 +10,7 @@
 #import "JSA4Cocoa.h"
 #import "JSAObjectCocoa.h"
 #import "JSAObjectAccessor.h"
+#import "JSAConvertor.h"
 
 @implementation JSA4Cocoa{
     JSContext *_jsContext;
@@ -70,19 +71,22 @@
                 [SELF loadJSClassWithName:className];
             }
         };
+        [_jsContext evaluateScript: jsa4CScript];
+        [_jsContext evaluateScript: jsaScript];
+        f_newClass = _jsContext[@"$newClass"];
+        JSValue *f_retrieve = _jsContext[@"$js_retrieve"];
         _jsContext[@"$oc_new"] = ^(NSString *className,NSString* initMethod,NSArray *arguments){
+            arguments = [JSAConvertor js2ocWithParamObject:arguments Retrieve:f_retrieve];
             return [JSAObjectAccessor constructWithClass:className InitMethod:initMethod Arguments:arguments];
         };
         _jsContext[@"$oc_invoke"] = ^(id object,NSString* method,NSArray* arguments){
-            return [JSAObjectAccessor invokeObject:object Method:method Arguments:arguments];
+            arguments = [JSAConvertor js2ocWithParamObject:arguments Retrieve:f_retrieve];
+            id value = [JSAObjectAccessor invokeObject:object Method:method Arguments:arguments];
+            return [JSAConvertor oc2jsWithObject:value];
         };
         _jsContext[@"$oc_classInvoke"] = ^(NSString *className,NSString* method,NSArray* arguments){
             return nil;
         };
-        
-        [_jsContext evaluateScript: jsa4CScript];
-        [_jsContext evaluateScript: jsaScript];
-        f_newClass = _jsContext[@"$newClass"];
         if(_jsClassLoader == nil){
             _jsClassLoader = [[JSADefaultClassLoader alloc] init];
         }
