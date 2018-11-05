@@ -48,6 +48,9 @@
     if(_jsContext == nil){
         _loadedClasses = [NSMutableSet new];
         _jsContext = [[JSContext alloc]init];
+        [_jsContext setExceptionHandler:^(JSContext *context, JSValue *exception) {
+            NSLog(@"%@",exception);
+        }];
         
         NSString *jsa4CScript = [loader loadJSClassWithName:@"JSA4Cocoa"];
         NSString *jsaScript = [loader loadJSClassWithName:@"JSAppSugar"];

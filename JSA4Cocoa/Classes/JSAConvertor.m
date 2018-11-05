@@ -11,13 +11,17 @@
 
 @implementation JSAConvertor
 
-+(id) js2ocWithObject:(id) object{
++(id) js2ocWithReturnObject:(id) object{
     if(object == nil){
         return nil;
     }
     if([object isKindOfClass: [NSNull class]]){
         return nil;
     }
+    return object;
+}
+
++(id) js2ocWithParamObject:(id) object{
     return object;
 }
 

@@ -31,7 +31,7 @@
 -(id) invokeMethod:(NSString *)method Arguments:(NSArray *)arguments{
     arguments = [JSAConvertor oc2jsWithObject:arguments];
     id value = [[_jsValue invokeMethod:method withArguments:arguments] toObject];
-    return [JSAConvertor js2ocWithObject:value];
+    return [JSAConvertor js2ocWithReturnObject:value];
 }
 
 -(id<JSAWeakObject>) weakObject{
