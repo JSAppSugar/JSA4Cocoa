@@ -85,8 +85,8 @@ var $engine = $engine || {};
 		});
 	}
 
-	$engine.$import = function(classes){
-		$oc_import(classes);
+	$engine.$import = function(){
+		$oc_import(arguments);
 	}
 
 }(this));
