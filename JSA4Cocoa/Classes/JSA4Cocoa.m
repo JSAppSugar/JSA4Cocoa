@@ -18,6 +18,7 @@
     NSMutableSet *_loadedClasses;
     
     JSValue *f_newClass;
+    JSValue *f_classFunction;
 }
 
 -(void) loadJSClassWithName:(NSString *) className{
@@ -74,6 +75,7 @@
         [_jsContext evaluateScript: jsa4CScript];
         [_jsContext evaluateScript: jsaScript];
         f_newClass = _jsContext[@"$newClass"];
+        f_classFunction = _jsContext[@"$classFunction"];
         JSValue *f_retrieve = _jsContext[@"$js_retrieve"];
         _jsContext[@"$oc_new"] = ^(NSString *className,NSString* initMethod,NSArray *arguments){
             arguments = [JSAConvertor js2ocWithParamObject:arguments Retrieve:f_retrieve];
@@ -85,7 +87,9 @@
             return [JSAConvertor oc2jsWithObject:value];
         };
         _jsContext[@"$oc_classInvoke"] = ^(NSString *className,NSString* method,NSArray* arguments){
-            return nil;
+            arguments = [JSAConvertor js2ocWithParamObject:arguments Retrieve:f_retrieve];
+            id value = [JSAObjectAccessor invokeClass:className Method:method Arguments:arguments];
+            return [JSAConvertor oc2jsWithObject:value];
         };
         if(_jsClassLoader == nil){
             _jsClassLoader = [[JSADefaultClassLoader alloc] init];
@@ -98,7 +102,10 @@
 }
 
 - (id)invokeClass:(NSString *)className Method:(NSString *)method Arguments:(NSArray *)arguments {
-    return nil;
+    [self loadJSClassWithName:className];
+    arguments = [JSAConvertor oc2jsWithObject:arguments];
+    JSValue* value = [f_classFunction callWithArguments:@[className,method,arguments]];
+    return [JSAConvertor js2ocWithReturnJSValue:value];
 }
 
 - (id<JSAObject>)newClass:(NSString *)className {

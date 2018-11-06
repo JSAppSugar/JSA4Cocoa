@@ -156,4 +156,16 @@
     }
 }
 
+-(void)testStatic {
+    {
+        NSString* a = [jsa invokeClass:@"test.jsa.TestObject" Method:@"staticGetA" Arguments:@[@"a"]];
+        XCTAssertEqualObjects(@"aa", a);
+    }
+    {
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+        NSString* r = [testObject invokeMethod:@"testNativeStatic"];
+        XCTAssertEqualObjects(@"a", r);
+    }
+}
+
 @end
