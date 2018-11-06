@@ -33,7 +33,7 @@
         regularExpression = [NSRegularExpression regularExpressionWithPattern:@"(\\$super)[ ]*\\.[ ]*([0-9a-zA-Z\\$_]+)[ ]*\\(" options:0 error:nil];
         jsaScript = [regularExpression stringByReplacingMatchesInString:jsaScript options:0 range:NSMakeRange(0, jsaScript.length) withTemplate:@"this\\.$1(\"$2\")\\("];
         
-        [_jsContext evaluateScript:jsaScript];
+        [_jsContext evaluateScript:jsaScript withSourceURL:[NSURL URLWithString:className]];
         [_loadedClasses addObject:className];
     }
 }
