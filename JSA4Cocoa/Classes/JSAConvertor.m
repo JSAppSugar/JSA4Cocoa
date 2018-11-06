@@ -54,7 +54,7 @@
             if([type isEqualToString:@"object"]){
                 return [[JSAObjectCocoa alloc] initWithJSValue:jsObj];
             }else if([type isEqualToString:@"function"]){
-                
+                return [[JSAFunctionCocoa alloc]initWithJSValue:jsObj];
             }
         }
     }
@@ -65,7 +65,7 @@
     if(object == nil){
         return nil;
     }
-    if([object isKindOfClass: [JSAObjectCocoa class]]){
+    if([object isKindOfClass: [JSAObjectCocoa class]] || [object isKindOfClass: [JSAFunctionCocoa class]]){
         return [object jsValue];
     }
     if([object isKindOfClass: [NSArray class]]){

@@ -20,7 +20,7 @@ var $engine = $engine || {};
     	var oid = null;
     	var wrapType = null;
     	var wrapObj = null;
-    	if(obj instanceof Function){
+    	if((typeof obj) === "function"){
     		oid = "f"+(++_wrap_id);
     		wrapType = "function";
     	}else if(obj instanceof jsa.Object){

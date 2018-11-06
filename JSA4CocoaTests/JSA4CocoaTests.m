@@ -148,6 +148,12 @@
         NSString* a = [f applyWithObject:o Arguments:@[@"f"]];
         XCTAssertEqualObjects(@"a", a);
     }
+    {
+        id<JSAFunction> f = [testObject invokeMethod:@"getTestFunc"];
+        id<JSAFunction> r = [testObject invokeMethod:@"testJSAFunction" Arguments:@[f]];
+        NSString* t = [r callWithArguments:@[@"f"]];
+        XCTAssertEqualObjects(@"f", t);
+    }
 }
 
 @end
