@@ -8,6 +8,7 @@
 
 #import "JSAConvertor.h"
 #import "JSAObjectCocoa.h"
+#import "JSAFunctionCocoa.h"
 
 @implementation JSAConvertor
 
@@ -15,8 +16,11 @@
     id value = nil;
     if([jsValue isObject]){
         JSValue* constructor = [jsValue valueForProperty:@"constructor"];
-        if(constructor != nil && [constructor hasProperty:@"$name"]){
+        NSString* className = constructor==nil?nil:[[constructor valueForProperty:@"name"] toString];
+        if([@"JSAClass" isEqualToString:className]){
             value = [[JSAObjectCocoa alloc] initWithJSValue:jsValue];
+        }else if ([@"Function" isEqualToString:className]){
+            value = [[JSAFunctionCocoa alloc] initWithJSValue:jsValue];
         }
         else{
             value = [jsValue toObject];

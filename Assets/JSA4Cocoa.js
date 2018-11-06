@@ -46,6 +46,10 @@ var $engine = $engine || {};
     delete _wrap_pool[id];
     return o;
   };
+  global.$js_function_apply = function($this,$function,$arguments){
+  	if(!$this) $this = global;
+  	return $function.apply($this,$arguments);
+  }
 
 	$engine.$init = function(define){
 		return (function(){

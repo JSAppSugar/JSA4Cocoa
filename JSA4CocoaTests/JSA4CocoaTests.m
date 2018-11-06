@@ -134,10 +134,19 @@
         NSObject* o = [NSObject new];
         NSObject* r = [testObject invokeMethod:@"testObject" Arguments:@[o]];
         XCTAssertEqual(o, r);
-    }{
+    }
+    {
         id<JSAObject> o = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@"a"]];
         id<JSAObject> r = [testObject invokeMethod:@"testJSAObject" Arguments:@[o]];
         XCTAssertEqualObjects(@"a", [r invokeMethod:@"getA"]);
+    }
+    {
+        id<JSAObject> o = [jsa newClass:@"test.jsa.TestObject" Arguments:@[@"a"]];
+        id<JSAFunction> f = [testObject invokeMethod:@"getTestFunc"];
+        NSString* r = [f callWithArguments:@[@"f"]];
+        XCTAssertEqualObjects(@"f", r);
+        NSString* a = [f applyWithObject:o Arguments:@[@"f"]];
+        XCTAssertEqualObjects(@"a", a);
     }
 }
 

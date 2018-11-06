@@ -25,6 +25,8 @@
 		F762C141218763DD004BBBC9 /* JSAObjectAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C13F218763DD004BBBC9 /* JSAObjectAccessor.m */; };
 		F762C14421902F93004BBBC9 /* JSAConvertor.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C14221902F93004BBBC9 /* JSAConvertor.h */; };
 		F762C14521902F93004BBBC9 /* JSAConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C14321902F93004BBBC9 /* JSAConvertor.m */; };
+		F762C1482190A0BA004BBBC9 /* JSAFunctionCocoa.h in Headers */ = {isa = PBXBuildFile; fileRef = F762C1462190A0BA004BBBC9 /* JSAFunctionCocoa.h */; };
+		F762C1492190A0BA004BBBC9 /* JSAFunctionCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = F762C1472190A0BA004BBBC9 /* JSAFunctionCocoa.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		F762C13F218763DD004BBBC9 /* JSAObjectAccessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAObjectAccessor.m; sourceTree = "<group>"; };
 		F762C14221902F93004BBBC9 /* JSAConvertor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAConvertor.h; sourceTree = "<group>"; };
 		F762C14321902F93004BBBC9 /* JSAConvertor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAConvertor.m; sourceTree = "<group>"; };
+		F762C1462190A0BA004BBBC9 /* JSAFunctionCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSAFunctionCocoa.h; sourceTree = "<group>"; };
+		F762C1472190A0BA004BBBC9 /* JSAFunctionCocoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSAFunctionCocoa.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,8 @@
 				F762C13F218763DD004BBBC9 /* JSAObjectAccessor.m */,
 				F762C14221902F93004BBBC9 /* JSAConvertor.h */,
 				F762C14321902F93004BBBC9 /* JSAConvertor.m */,
+				F762C1462190A0BA004BBBC9 /* JSAFunctionCocoa.h */,
+				F762C1472190A0BA004BBBC9 /* JSAFunctionCocoa.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -209,6 +215,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F762C1482190A0BA004BBBC9 /* JSAFunctionCocoa.h in Headers */,
 				F762C14421902F93004BBBC9 /* JSAConvertor.h in Headers */,
 				F762C13121860C25004BBBC9 /* JSAObjectCocoa.h in Headers */,
 				F762C140218763DD004BBBC9 /* JSAObjectAccessor.h in Headers */,
@@ -317,6 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F762C1492190A0BA004BBBC9 /* JSAFunctionCocoa.m in Sources */,
 				F762C12121841569004BBBC9 /* JSADefaultClassLoader.m in Sources */,
 				F762C13221860C25004BBBC9 /* JSAObjectCocoa.m in Sources */,
 				F762C141218763DD004BBBC9 /* JSAObjectAccessor.m in Sources */,
