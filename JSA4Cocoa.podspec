@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "JSA4Cocoa", "JSA4Cocoa/**/*.{h,m}"
+  s.source_files  = "JSA4Cocoa/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
   s.public_header_files = "JSA4Cocoa/*.h"
 
