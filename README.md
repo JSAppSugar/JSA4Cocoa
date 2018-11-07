@@ -7,3 +7,5 @@ Visit [JSAppSugar](https://github.com/JSAppSugar/JSAppSugar) for more infomation
 ```
 pod 'JSA4Cocoa', '~> 1.0'
 ```
+## Document
+[中文](https://github.com/JSAppSugar/JSA4Cocoa/wiki)
