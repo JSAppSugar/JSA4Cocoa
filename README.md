@@ -5,5 +5,5 @@ Visit [JSAppSugar](https://github.com/JSAppSugar/JSAppSugar) for more infomation
 
 ## Install
 ```
-pod 'JSA4Cocoa'
+pod 'JSA4Cocoa', '~> 1.0'
 ```
