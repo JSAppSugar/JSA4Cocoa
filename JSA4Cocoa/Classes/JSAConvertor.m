@@ -18,7 +18,11 @@
         JSValue* constructor = [jsValue valueForProperty:@"constructor"];
         NSString* className = constructor==nil?nil:[[constructor valueForProperty:@"name"] toString];
         if([@"JSAClass" isEqualToString:className]){
-            value = [[JSAObjectCocoa alloc] initWithJSValue:jsValue];
+            if([jsValue hasProperty:@"$this"]){
+                value = [[jsValue valueForProperty:@"$this"] toObject];
+            }else{
+                value = [[JSAObjectCocoa alloc] initWithJSValue:jsValue];
+            }
         }else if ([@"Function" isEqualToString:className]){
             value = [[JSAFunctionCocoa alloc] initWithJSValue:jsValue];
         }

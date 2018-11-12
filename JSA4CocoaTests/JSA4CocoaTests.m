@@ -94,6 +94,10 @@
 -(void)testTypes {
     id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
     {
+        id testOCObject = [testObject invokeMethod: @"getNativeObj"];
+        XCTAssertEqualObjects(@"TestOCObject", NSStringFromClass([testOCObject class]));
+    }
+    {
         NSString *a = [testObject invokeMethod:@"testNativeInit" Arguments:@[@"a",@1]];
         XCTAssertEqualObjects(@"a1", a);
     }
