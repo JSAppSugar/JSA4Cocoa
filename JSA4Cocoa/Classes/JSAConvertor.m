@@ -61,6 +61,16 @@
                 return [[JSAFunctionCocoa alloc]initWithJSValue:jsObj];
             }
         }
+        id this = [object objectForKey:@"$this"];
+        if(this != nil){
+            return this;
+        }
+        NSDictionary *map = object;
+        NSMutableDictionary *newDictionary = [[NSMutableDictionary alloc] initWithCapacity:map.count];
+        for(NSString* key in map){
+            newDictionary[key] = [JSAConvertor js2ocWithParamObject: map[key] Retrieve:jsRetrieve];
+        }
+        return newDictionary;
     }
     return object;
 }

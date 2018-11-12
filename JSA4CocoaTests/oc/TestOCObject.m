@@ -70,7 +70,8 @@
     if( [m count]>0 ) {
         NSNumber *a = [m valueForKey:@"a"];
         NSString *b = [m valueForKey:@"b"];
-        if([a intValue] == 1 && [b isEqualToString:@"1"]) {
+        id o = [m valueForKey:@"o"];
+        if([a intValue] == 1 && [b isEqualToString:@"1"] && [o isKindOfClass: TestOCObject.class]) {
             return m;
         }
     }

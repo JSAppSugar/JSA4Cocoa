@@ -123,8 +123,10 @@
         NSDictionary* r = [testObject invokeMethod:@"testMap" Arguments:@[m]];
         NSNumber* a = [r valueForKey:@"a"];
         NSString* b = [r valueForKey:@"b"];
+        id o = [r valueForKey:@"o"];
         XCTAssertEqual(1, [a intValue]);
         XCTAssertEqualObjects(@"1", b);
+        XCTAssertEqualObjects(@"TestOCObject", NSStringFromClass([o class]));
     }
     {
         NSArray* m = @[@1,@"1"];
