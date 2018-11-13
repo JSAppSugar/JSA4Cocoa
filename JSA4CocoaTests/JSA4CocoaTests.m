@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <JSA4Cocoa/JSA4Cocoa.h>
+#import "TestOCObject.h"
 
 @interface JSA4CocoaTests : XCTestCase
 
@@ -175,10 +176,18 @@
 }
 
 -(void)testWeak {
-    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
-    id<JSAWeakObject> weakTestObject = [testObject weakObject];
-    testObject = nil;
-    XCTAssertNotNil([weakTestObject value]);
+    {
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+        id<JSAWeakObject> weakTestObject = [testObject weakObject];
+        XCTAssertNotNil([weakTestObject value]);
+    }
+    {
+        TestOCObject* testOCObj = [[TestOCObject alloc] init];
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+        [testObject invokeMethod:@"testWeakNativeA" Arguments:@[testOCObj]];
+        testOCObj = [testObject invokeMethod:@"testWeakNativeB"];
+        XCTAssertNotNil(testOCObj);
+    }
 }
 
 @end

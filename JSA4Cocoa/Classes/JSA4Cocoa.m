@@ -16,6 +16,7 @@
     JSContext *_jsContext;
     id<JSAClassLoader> _jsClassLoader;
     NSMutableSet *_loadedClasses;
+    NSMapTable *_weakMap;
     
     JSValue *f_newClass;
     JSValue *f_classFunction;
@@ -90,6 +91,14 @@
             arguments = [JSAConvertor js2ocWithParamObject:arguments Retrieve:f_retrieve];
             id value = [JSAObjectAccessor invokeClass:className Method:method Arguments:arguments];
             return [JSAConvertor oc2jsWithObject:value];
+        };
+        NSMapTable *weakMap = [NSMapTable weakToWeakObjectsMapTable];
+        _weakMap = weakMap;
+        _jsContext[@"$oc_save_weak"] = ^(id key,id value){
+            [weakMap setObject:value forKey:key];
+        };
+        _jsContext[@"$oc_get_weak"] = ^(id key){
+            return [weakMap objectForKey:key];
         };
         if(_jsClassLoader == nil){
             _jsClassLoader = [[JSADefaultClassLoader alloc] init];

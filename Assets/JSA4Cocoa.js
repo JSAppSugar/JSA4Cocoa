@@ -89,6 +89,33 @@ var $engine = $engine || {};
 		$oc_import(arguments);
 	}
 
+  $engine.weakObject = function(){
+    var weakObject = new jsa.Object();
+    if(this.$this){
+      weakObject.$weakThis = $oc_new("NSObject","init",[]);
+      weakObject.$class = this.constructor;
+      $oc_save_weak(weakObject.$weakThis,this.$this);
+    }else{
+      weakObject.$this = this;
+      weakObject.$weakThis = this;
+    }
+    return weakObject;
+  }
+  $engine.isWeak = function(){
+    return this.$weakThis?true:false;
+  }
+  $engine.self = function(){
+    if(this.$weakThis){
+      var realThis = $oc_get_weak(this.$weakThis);
+      if(realThis && this.isWeak()){
+        return this.$class.fromNative(realThis);
+      }
+      return null;
+    }else{
+      return this;
+    }
+  }
+
 }(this));
 
 
