@@ -35,6 +35,30 @@
 }
 
 -(id<JSAWeakObject>) weakObject{
+    return [[JSAWeakObjectCocoa alloc] initWithJSValue:_jsValue];
+}
+
+@end
+
+@implementation JSAWeakObjectCocoa
+{
+    JSManagedValue* _jsValue;
+}
+
+-(instancetype) initWithJSValue:(JSValue *)value{
+    if(self = [super init]){
+        _jsValue = [JSManagedValue managedValueWithValue:value];
+        JSContext *context = [value context];
+        [[context virtualMachine] addManagedReference:_jsValue withOwner:nil];
+    }
+    return self;
+}
+
+-(id<JSAObject>) value{
+    JSValue *jsValue = [_jsValue value];
+    if(jsValue){
+        return [[JSAObjectCocoa alloc] initWithJSValue:jsValue];
+    }
     return nil;
 }
 

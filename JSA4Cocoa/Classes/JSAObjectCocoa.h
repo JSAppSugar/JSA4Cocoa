@@ -17,3 +17,9 @@
 -(JSValue *) jsValue;
 
 @end
+
+@interface JSAWeakObjectCocoa : NSObject<JSAWeakObject>
+
+-(instancetype) initWithJSValue:(JSValue *)value;
+
+@end

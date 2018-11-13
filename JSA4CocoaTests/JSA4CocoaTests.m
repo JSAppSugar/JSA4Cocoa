@@ -174,4 +174,11 @@
     }
 }
 
+-(void)testWeak {
+    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+    id<JSAWeakObject> weakTestObject = [testObject weakObject];
+    testObject = nil;
+    XCTAssertNotNil([weakTestObject value]);
+}
+
 @end
