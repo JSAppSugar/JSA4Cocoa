@@ -7,6 +7,7 @@ var $engine = $engine || {};
 	"use strict";
 
 	$engine.lang = "oc";
+  global.$oc = true;
 
 	var _wrap_id = 0;
   var _wrap_pool = {};
@@ -49,7 +50,7 @@ var $engine = $engine || {};
   global.$js_function_apply = function($this,$function,$arguments){
   	if(!$this) $this = global;
   	return $function.apply($this,$arguments);
-  }
+  };
 
 	$engine.$init = function(define){
 		return (function(){
@@ -74,7 +75,7 @@ var $engine = $engine || {};
 			var args = arguments.length==1?[arguments[0]]:Array.apply(null,arguments);
 			return $oc_invoke(this.$this,method,f_objToJSWrap(args));
 		});
-	}
+	};
 
 	$engine.$staticFunction = function(define){
 		var method = define;
@@ -83,11 +84,11 @@ var $engine = $engine || {};
 			var args = arguments.length==1?[arguments[0]]:Array.apply(null,arguments);
 			return $oc_classInvoke(className,method,f_objToJSWrap(args));
 		});
-	}
+	};
 
 	$engine.$import = function(){
 		$oc_import(arguments);
-	}
+	};
 
   $engine.weakObject = function(){
     var weakObject = new jsa.Object();
@@ -100,10 +101,10 @@ var $engine = $engine || {};
       weakObject.$weakThis = this;
     }
     return weakObject;
-  }
+  };
   $engine.isWeak = function(){
     return this.$weakThis?true:false;
-  }
+  };
   $engine.self = function(){
     if(this.$weakThis){
       var realThis = $oc_get_weak(this.$weakThis);
@@ -114,6 +115,19 @@ var $engine = $engine || {};
     }else{
       return this;
     }
+  };
+  $engine.invoke = function(){
+    var method = arguments[0];
+    var args = arguments.length<2?[]:Array.prototype.slice.call(arguments,1);
+    return $oc_invoke(this.$this,method,f_objToJSWrap(args));
+  };
+
+  global.$new = function(){
+    var className = arguments[0];
+    var initMethod = arguments[1];
+    var args = arguments.length<3?[]:Array.prototype.slice.call(arguments,2);
+    var nativeObj = $oc_new(className,initMethod,f_objToJSWrap(args));
+    return new jsa.NativeObject(nativeObj);
   }
 
 }(this));

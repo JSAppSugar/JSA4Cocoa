@@ -190,4 +190,10 @@
     }
 }
 
+-(void)testJSNativeObject{
+    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+    id v = [testObject invokeMethod:@"testNativeObject"];
+    XCTAssertEqualObjects(@"TestOCObject", NSStringFromClass([v class]));
+}
+
 @end
