@@ -23,7 +23,7 @@
     if(jsa == nil){
         jsa = [[JSA4Cocoa alloc]init];
         JSADefaultClassLoader *loader = [[JSADefaultClassLoader alloc] initWithNSBundle: [NSBundle bundleForClass: [JSA4CocoaTests class]]];
-        [jsa setJSClassLoader:loader];
+        [jsa addJSClassLoader:loader];
         [jsa startEngine];
     }
 }

@@ -14,10 +14,10 @@
 
 /*!
  @method
- @abstract Set up a JS class loader that you implement on your own.
+ @abstract Add a JS class loader that you implement on your own.
  @param loader A implementation of JSClassLoader.
  */
--(void) setJSClassLoader:(id<JSAClassLoader>) loader;
+-(void) addJSClassLoader:(id<JSAClassLoader>) loader;
 
 /*!
  @method

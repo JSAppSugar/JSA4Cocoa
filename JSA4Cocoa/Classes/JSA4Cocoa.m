@@ -14,7 +14,8 @@
 
 @implementation JSA4Cocoa{
     JSContext *_jsContext;
-    id<JSAClassLoader> _jsClassLoader;
+    id<JSAClassLoader> _mainClassLoader;
+    NSMutableArray* _jsClassLoaders;
     NSMutableSet *_loadedClasses;
     NSMapTable *_weakMap;
     
@@ -22,9 +23,23 @@
     JSValue *f_classFunction;
 }
 
+-(instancetype) init{
+    if(self = [super init]){
+        _jsClassLoaders = [NSMutableArray new];
+        _mainClassLoader = [[JSADefaultClassLoader alloc] init];
+    }
+    return self;
+}
+
 -(void) loadJSClassWithName:(NSString *) className{
     if(![_loadedClasses containsObject:className]){
-        NSString* jsaScript = [_jsClassLoader loadJSClassWithName:className];
+        NSString* jsaScript = nil;
+        for(id<JSAClassLoader> loader in _jsClassLoaders){
+            jsaScript = [loader loadJSClassWithName:className];
+        }
+        if(jsaScript == nil){
+            jsaScript = [_mainClassLoader loadJSClassWithName:className];
+        }
         if(jsaScript == nil){
             @throw [NSException exceptionWithName:[NSString stringWithFormat:@"Can't find JS class: %@ .",className] reason:nil userInfo:nil];
         }
@@ -39,8 +54,8 @@
     }
 }
 
--(void) setJSClassLoader:(id<JSAClassLoader>) loader{
-    _jsClassLoader = loader;
+-(void) addJSClassLoader:(id<JSAClassLoader>) loader{
+    [_jsClassLoaders insertObject:loader atIndex:0];
 }
 
 -(void) startEngine{
@@ -100,9 +115,6 @@
         _jsContext[@"$oc_get_weak"] = ^(id key){
             return [weakMap objectForKey:key];
         };
-        if(_jsClassLoader == nil){
-            _jsClassLoader = [[JSADefaultClassLoader alloc] init];
-        }
     }
 }
 
