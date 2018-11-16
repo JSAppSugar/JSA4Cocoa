@@ -31,7 +31,11 @@ var $engine = $engine || {};
     			oid = "o"+(++_wrap_id);
     			wrapType = "object";
     		}
-    	}
+    	}else if(obj instanceof Object && obj.constructor == Object){
+        for(var k in obj){
+          obj[k] = f_objToJSWrap(obj[k]);
+        }
+      }
     	if(oid){
     		wrapObj = {};
     		wrapObj.$id = oid;

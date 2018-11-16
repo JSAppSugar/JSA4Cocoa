@@ -25,6 +25,26 @@
             }
         }else if ([@"Function" isEqualToString:className]){
             value = [[JSAFunctionCocoa alloc] initWithJSValue:jsValue];
+        }else if([@"Object" isEqualToString:className]){
+            value = [jsValue toObject];
+            if([value isKindOfClass: NSDictionary.class]){
+                NSMutableDictionary* newMap = [[NSMutableDictionary alloc]initWithDictionary:value];
+                for(NSString* key in value){
+                    JSValue* propertyJSvalue = [jsValue valueForProperty:key];
+                    id ocValue = [JSAConvertor js2ocWithReturnJSValue:propertyJSvalue];
+                    [newMap setValue:ocValue forKey:key];
+                }
+                value = newMap;
+            }
+        }else if([@"Array" isEqualToString:className]){
+            NSArray* jsArray = [jsValue toArray];
+            NSMutableArray* newArray = [[NSMutableArray alloc]initWithCapacity:jsArray.count];
+            for(int i=0;i<jsArray.count;i++){
+                JSValue* propertyJSvalue = [jsValue valueAtIndex: i];
+                id ocValue = [JSAConvertor js2ocWithReturnJSValue:propertyJSvalue];
+                [newArray addObject:ocValue];
+            }
+            value = newArray;
         }
         else{
             value = [jsValue toObject];

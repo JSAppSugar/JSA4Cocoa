@@ -125,9 +125,11 @@
         NSNumber* a = [r valueForKey:@"a"];
         NSString* b = [r valueForKey:@"b"];
         id o = [r valueForKey:@"o"];
+        id<JSAFunction> f = [r valueForKey:@"f"];
         XCTAssertEqual(1, [a intValue]);
         XCTAssertEqualObjects(@"1", b);
         XCTAssertEqualObjects(@"TestOCObject", NSStringFromClass([o class]));
+        XCTAssertTrue([f conformsToProtocol: @protocol(JSAFunction)]);
     }
     {
         NSArray* m = @[@1,@"1"];

@@ -71,7 +71,14 @@
         NSNumber *a = [m valueForKey:@"a"];
         NSString *b = [m valueForKey:@"b"];
         id o = [m valueForKey:@"o"];
-        if([a intValue] == 1 && [b isEqualToString:@"1"] && [o isKindOfClass: TestOCObject.class]) {
+        id<JSAFunction> f = [m valueForKey:@"f"];
+        id<JSAObject> s = [m valueForKey:@"s"];
+        if([a intValue] == 1
+           && [b isEqualToString:@"1"]
+           && [o isKindOfClass: TestOCObject.class]
+           && [f conformsToProtocol: @protocol(JSAFunction)]
+           && [s conformsToProtocol: @protocol(JSAObject)]
+           ) {
             return m;
         }
     }
