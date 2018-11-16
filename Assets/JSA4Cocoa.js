@@ -136,4 +136,8 @@ var $engine = $engine || {};
 
 }(this));
 
+var console = console || {};
+console.log = function(s){
+  $log(s);
+}
 
