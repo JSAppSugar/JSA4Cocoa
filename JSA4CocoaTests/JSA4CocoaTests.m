@@ -194,9 +194,16 @@
 }
 
 -(void)testJSNativeObject{
-    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
-    id v = [testObject invokeMethod:@"testNativeObject"];
-    XCTAssertEqualObjects(@"TestOCObject", NSStringFromClass([v class]));
+    {
+        id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+        id v = [testObject invokeMethod:@"testNativeObject"];
+        XCTAssertEqualObjects(@"TestOCObject", NSStringFromClass([v class]));
+    }
+    {
+        NSString* script = @"$import(\"test.jsa.NativeObject\");(function(){return new test.jsa.NativeObject();})();";
+        id v = [jsa evaluateScript:script];
+        XCTAssertEqualObjects(@"TestOCObject", NSStringFromClass([v class]));
+    }
 }
 
 @end

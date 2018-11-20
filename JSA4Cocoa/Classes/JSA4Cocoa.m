@@ -142,4 +142,9 @@
     return nil;
 }
 
+-(id) evaluateScript:(NSString*) script{
+    JSValue *value = [_jsContext evaluateScript:script];
+    return [JSAConvertor js2ocWithReturnJSValue:value];
+}
+
 @end
