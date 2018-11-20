@@ -34,6 +34,13 @@
     return [JSAConvertor js2ocWithReturnJSValue:value];
 }
 
+-(BOOL) hasMethod:(NSString *)method{
+    if([_jsValue hasProperty:method]){
+        return YES;
+    }
+    return NO;
+}
+
 -(id<JSAWeakObject>) weakObject{
     return [[JSAWeakObjectCocoa alloc] initWithJSValue:_jsValue];
 }

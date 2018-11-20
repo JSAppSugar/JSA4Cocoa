@@ -58,6 +58,13 @@
 
 /*!
  @method
+ @abstract Check if a JSAObject has a method.
+ @result Returns YES if method is present on the JSAObject.
+ */
+-(BOOL) hasMethod:(NSString *)method;
+
+/*!
+ @method
  @abstract Invoke the specified function on the JS object
  @param method The name of the method
  @return The return value of the function call.

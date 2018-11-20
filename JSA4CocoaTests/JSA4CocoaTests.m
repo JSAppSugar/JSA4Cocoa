@@ -47,6 +47,7 @@
 - (void)testNewJSClass {
     {
         id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+        XCTAssertTrue([testObject hasMethod:@"getA"]);
         NSString *a = [testObject invokeMethod:@"getA"];
         XCTAssertEqualObjects(@"-", a);
     }
