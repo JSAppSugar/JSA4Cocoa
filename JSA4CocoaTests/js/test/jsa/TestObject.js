@@ -3,6 +3,12 @@ $import(
 	"test.jsa.NativeObject"
 	);
 
+$class("JSOCNativeObject",{
+	$init : function(){
+		this.$this = ($new("NSObject","init")).$this;
+	}
+});
+
 $class("test.jsa.TestObject",{
 	a:"-",
 	$init:function(a){
@@ -155,6 +161,12 @@ $class("test.jsa.TestObject",{
 			var nativeJSObj = $new("test.java.JavaObject");
 			var weakObj = nativeJSObj.weakObject();
 			return weakObj.self();
+		}
+		return null;
+	},
+	testJSNativeObject:function(){
+		if(JSA.$oc){
+			return new JSOCNativeObject();
 		}
 		return null;
 	}
