@@ -23,6 +23,10 @@
     return [JSAObjectAccessor invokeObject:class Method:method Arguments:arguments];
 }
 
++(SEL) loadSelectorWithName:(NSString *) selectorName{
+    return nil;
+}
+
 +(id) invokeObject:(id) object Method:(NSString *) method Arguments:(NSArray *)arguments{
     if(object == nil) return nil;
     Class class = [object class];
@@ -31,7 +35,18 @@
         object = nil;
     }
     
+    
+#ifdef JSA_APPLE_SAFE
+    SEL selector;
+    if([@"init" isEqualToString:method]){
+        selector = @selector(init);
+    }else{
+        selector = [class loadSelectorWithName:method];
+    }
+#else
     SEL selector = NSSelectorFromString(method);
+#endif
+    
     NSMethodSignature *methodSignature;
     if(object){
         methodSignature = [class instanceMethodSignatureForSelector:selector];

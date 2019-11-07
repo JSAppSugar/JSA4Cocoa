@@ -13,6 +13,53 @@
     int _i;
 }
 
++(SEL) loadSelectorWithName:(NSString *) selectorName{
+    if([@"initWithString:Int:" isEqualToString:selectorName]){
+        return @selector(initWithString:Int:);
+    }
+    else if([@"initWithNSDictionary:" isEqualToString:selectorName]){
+        return @selector(initWithNSDictionary:);
+    }
+    else if([@"staticA" isEqualToString:selectorName]){
+        return @selector(staticA);
+    }
+    else if([@"getS" isEqualToString:selectorName]){
+        return @selector(getS);
+    }
+    else if([@"getI" isEqualToString:selectorName]){
+        return @selector(getI);
+    }
+    else if([@"testNull:" isEqualToString:selectorName]){
+        return @selector(testNull:);
+    }
+    else if([@"testString:" isEqualToString:selectorName]){
+        return @selector(testString:);
+    }
+    else if([@"testInt:" isEqualToString:selectorName]){
+        return @selector(testInt:);
+    }
+    else if([@"testBool:" isEqualToString:selectorName]){
+        return @selector(testBool:);
+    }
+    else if([@"testMap:" isEqualToString:selectorName]){
+        return @selector(testMap:);
+    }
+    else if([@"testArray:" isEqualToString:selectorName]){
+        return @selector(testArray:);
+    }
+    else if([@"testObject:" isEqualToString:selectorName]){
+        return @selector(testObject:);
+    }
+    else if([@"testJSAObject:" isEqualToString:selectorName]){
+        return @selector(testJSAObject:);
+    }
+    else if([@"testJSAFunction:" isEqualToString:selectorName]){
+        return @selector(testJSAFunction:);
+    }
+    
+    return nil;
+}
+
 -(instancetype) init{
     return [self initWithString:@"-" Int:0];
 }
