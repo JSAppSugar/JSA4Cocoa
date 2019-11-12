@@ -13,6 +13,8 @@
 
 +(NSString *) staticA;
 
+-(NSString *) staticA;
+
 -(instancetype) initWithString:(NSString *) s Int:(int) i;
 -(instancetype) initWithNSDictionary:(NSDictionary *) m;
 

@@ -10,6 +10,16 @@
 #import "JSAObjectAccessor.h"
 #import "JSAHelper.h"
 
+@interface JSASel : NSObject
+
+@property (nonatomic) SEL sel;
+
+@end
+
+@implementation JSASel
+
+@end
+
 @implementation JSAObjectAccessor
 
 +(id) constructWithClass:(NSString *)className InitMethod:(NSString *) initMethod Arguments:(NSArray *)arguments{
@@ -23,8 +33,43 @@
     return [JSAObjectAccessor invokeObject:class Method:method Arguments:arguments];
 }
 
-+(SEL) loadSelectorWithName:(NSString *) selectorName{
-    return nil;
+static NSMutableDictionary* classSel = nil;
+
++(SEL) sel:(NSString*) selName OfClass:(Class )clz{
+    if(classSel == nil){
+        classSel = [NSMutableDictionary new];
+    }
+    NSString *clzName = NSStringFromClass(clz);
+    NSMutableDictionary *clzMethods = [classSel valueForKey:clzName];
+    if(clzMethods == nil){
+        clzMethods = [NSMutableDictionary new];
+        [classSel setValue:clzMethods forKey:clzName];
+    }
+    SEL sel = nil;
+    JSASel *jsaSel = [clzMethods valueForKey:selName];
+    if(jsaSel!=nil){
+        sel = jsaSel.sel;
+    }
+    
+    if(jsaSel == nil){
+        unsigned int count;
+        Method *methods = class_copyMethodList(clz, &count);
+        for(int i=0;i<count;i++){
+            Method method = methods[i];
+            SEL asel = method_getName(method);
+            NSString* name = NSStringFromSelector(asel);
+            if([name isEqualToString:selName]){
+                sel = asel;
+                jsaSel = [JSASel new];
+                jsaSel.sel = sel;
+                [clzMethods setValue:jsaSel forKey:selName];
+                break;
+            }
+        }
+        free(methods);
+    }
+    
+    return sel;
 }
 
 +(id) invokeObject:(id) object Method:(NSString *) method Arguments:(NSArray *)arguments{
@@ -35,17 +80,8 @@
         object = nil;
     }
     
-    
-#ifdef JSA_APPLE_SAFE
-    SEL selector;
-    if([@"init" isEqualToString:method]){
-        selector = @selector(init);
-    }else{
-        selector = [class loadSelectorWithName:method];
-    }
-#else
-    SEL selector = NSSelectorFromString(method);
-#endif
+    //SEL selector = NSSelectorFromString(method);
+    SEL selector = [JSAObjectAccessor sel:method OfClass:class];
     
     NSMethodSignature *methodSignature;
     if(object){

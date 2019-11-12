@@ -34,20 +34,3 @@
 
 @end
 
-
-/*!
-@protocol
-@abstract Load.selector from user define
-*/
-@protocol JSASelectorLoader <NSObject>
-
-/*!
-@method
-@abstract get defined selector by name
-@param selectorName The name of a selector
-@return The SEL
-*/
--(SEL) loadSelectorWithName:(NSString *) selectorName;
-
-@end
-
