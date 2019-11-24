@@ -209,4 +209,11 @@
     }
 }
 
+-(void)testPerformance{
+    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+    long max = 100000000;
+    long c = [[testObject invokeMethod:@"testPerformance" Arguments:@[@(max)]] longValue];
+    XCTAssertEqual(c,max);
+}
+
 @end

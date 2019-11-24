@@ -169,5 +169,13 @@ $class("test.jsa.TestObject",{
 			return new JSOCNativeObject();
 		}
 		return null;
+	},
+	testPerformance:function(max){
+		let i = 0;
+		let cc = 0;
+		for(i=0;i<max;i++){
+			cc++;
+		}
+		return cc;
 	}
 });
