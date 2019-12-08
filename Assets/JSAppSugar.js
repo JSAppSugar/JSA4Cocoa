@@ -1,6 +1,6 @@
 // MIT License
 
-// Copyright (c) 2018 JSAppSugar
+// Copyright (c) 2019 JSAppSugar
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -158,7 +158,12 @@ JSA.$global = this;
 				JSAClass.prototype.$init = engine.$init(define["$init"]?define["$init"]['$'+engine.lang]:undefined);
 				for(var key in define){
 					if(key.charAt(0)==='$') continue;
-					JSAClass.prototype[key] = engine.$function(define[key]["$"+engine.lang]);
+					if(define[key]["$setView"]){
+						JSAClass.prototype[key] = engine.$function(define[key]["$"+engine.lang],true);
+					}
+					else{
+						JSAClass.prototype[key] = engine.$function(define[key]["$"+engine.lang],false);
+					}
 				}
 				JSAClass.fromNative = function(obj){
 					return new JSAClass({"$native":obj});
@@ -166,7 +171,11 @@ JSA.$global = this;
 				if(define.$static){
 					var staticDefine = define.$static;
 					for(var key in staticDefine){
-						JSAClass[key] = engine.$staticFunction(staticDefine[key]["$"+engine.lang]);
+						if(key.charAt(0)=== '$'){
+							JSAClass[key] = engine.$staticInitFunction(staticDefine[key]["$"+engine.lang]);
+						}else{
+							JSAClass[key] = engine.$staticFunction(staticDefine[key]["$"+engine.lang]);
+						}
 					}
 				}
 			}else{

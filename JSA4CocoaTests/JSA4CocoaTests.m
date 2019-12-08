@@ -216,4 +216,18 @@
     XCTAssertEqual(c,max);
 }
 
+-(void)testStaticInit{
+    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+    NSDictionary* m = @{@"s":@"s"};
+    id o = [testObject invokeMethod:@"testStaticInit" Arguments:@[m]];
+    NSString* s = [o getS];
+    XCTAssertEqualObjects(@"s", s);
+}
+
+-(void)testWorkInMain{
+    id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
+    [testObject invokeMethod:@"testWorkInMain"];
+    XCTAssertTrue(true);
+}
+
 @end

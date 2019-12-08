@@ -24,12 +24,33 @@
     }
     return self;
 }
+
 -(instancetype) initWithNSDictionary:(NSDictionary *) m{
     if(self = [super init]){
         _s = [m valueForKey:@"s"];
         _i = [[m valueForKey:@"o"] intValue];
     }
     return self;
+}
+
+-(void) setS:(NSString *) s{
+    _s = s;
+}
+
++(id) initWithParam:(NSDictionary *) m{
+    TestOCObject *o = [[TestOCObject alloc] init];
+    NSString* s = [m valueForKey:@"s"];
+    [o setS:s];
+    return o;
+}
+
+-(id) initWithParam:(NSDictionary *) m{
+    return [TestOCObject initWithParam:m];
+}
+
+
+-(void) workInMain{
+    NSLog(@"%@",@"workInMain");
 }
 
 +(NSString *) staticA{

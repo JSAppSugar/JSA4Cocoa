@@ -12,8 +12,11 @@
 @interface TestOCObject : NSObject
 
 +(NSString *) staticA;
++(id) initWithParam:(NSDictionary *) m;
 
 -(NSString *) staticA;
+-(id) initWithParam:(NSDictionary *) m;
+
 
 -(instancetype) initWithString:(NSString *) s Int:(int) i;
 -(instancetype) initWithNSDictionary:(NSDictionary *) m;
@@ -29,6 +32,7 @@
 -(id) testObject:(id) o;
 -(id<JSAObject>) testJSAObject:(id<JSAObject>) jsaObject;
 -(id<JSAFunction>) testJSAFunction:(id<JSAFunction>) func;
+-(void) workInMain;
 
 @end
 

@@ -1,4 +1,3 @@
-
 $class("test.jsa.NativeObject",{
 	$implementation:{
 		$java : "test.java.JavaObject",
@@ -14,6 +13,10 @@ $class("test.jsa.NativeObject",{
 		staticA:{
 			$java : "staticA",
 			$oc : "staticA"
+		},
+		$init:{
+			$java : "initWithParam",
+			$oc : "initWithParam:"
 		}
 	},
 	getS:{
@@ -63,5 +66,10 @@ $class("test.jsa.NativeObject",{
 	testJSAFunction:{
 		$java : "testJSAFunction",
 		$oc : "testJSAFunction:"
+	},
+	workInMain:{
+		$setView:true,
+		$java : "workInMain",
+		$oc : "workInMain"
 	}
 });

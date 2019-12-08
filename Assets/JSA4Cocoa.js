@@ -73,11 +73,12 @@ var $engine = $engine || {};
 		});
 	};
 
-	$engine.$function = function(define){
+	$engine.$function = function(define,inMain){
 		var method = define;
+    let runInMain = inMain;
 		return (function(){
 			var args = arguments.length==1?[arguments[0]]:Array.apply(null,arguments);
-			return $oc_invoke(this.$this,method,f_objToJSWrap(args));
+			return $oc_invoke(runInMain,this.$this,method,f_objToJSWrap(args));
 		});
 	};
 
@@ -89,6 +90,17 @@ var $engine = $engine || {};
 			return $oc_classInvoke(className,method,f_objToJSWrap(args));
 		});
 	};
+
+  $engine.$staticInitFunction = function(define){
+    var method = define;
+    return (function(){
+      var className = this.$impl;
+      var args = arguments.length==1?[arguments[0]]:Array.apply(null,arguments);
+      let v = $oc_classInvoke(className,method,f_objToJSWrap(args));
+      return this.fromNative(v);
+    });
+  };
+
 
 	$engine.$import = function(){
 		$oc_import(arguments);

@@ -97,10 +97,19 @@
             arguments = [JSAConvertor js2ocWithParamObject:arguments Retrieve:f_retrieve];
             return [JSAObjectAccessor constructWithClass:className InitMethod:initMethod Arguments:arguments];
         };
-        _jsContext[@"$oc_invoke"] = ^(id object,NSString* method,NSArray* arguments){
+        _jsContext[@"$oc_invoke"] = ^(Boolean isMain,id object,NSString* method,NSArray* arguments){
             arguments = [JSAConvertor js2ocWithParamObject:arguments Retrieve:f_retrieve];
-            id value = [JSAObjectAccessor invokeObject:object Method:method Arguments:arguments];
-            return [JSAConvertor oc2jsWithObject:value];
+            id r;
+            if(isMain){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [JSAObjectAccessor invokeObject:object Method:method Arguments:arguments];
+                });
+                r = nil;
+            }else{
+                id value = [JSAObjectAccessor invokeObject:object Method:method Arguments:arguments];
+                r = [JSAConvertor oc2jsWithObject:value];
+            }
+            return r;
         };
         _jsContext[@"$oc_classInvoke"] = ^(NSString *className,NSString* method,NSArray* arguments){
             arguments = [JSAConvertor js2ocWithParamObject:arguments Retrieve:f_retrieve];
