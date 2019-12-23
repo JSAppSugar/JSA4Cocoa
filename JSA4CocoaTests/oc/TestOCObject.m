@@ -50,7 +50,7 @@
 
 
 -(void) workInMain{
-    NSLog(@"%@",@"workInMain");
+    NSLog(@">%@",@"workInMain");
 }
 
 +(NSString *) staticA{

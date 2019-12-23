@@ -124,6 +124,11 @@ JSA.$global = this;
 		currentPackage[packages[l]] = newClass;
 	};
 
+	JSA.$interface = function(className,define){
+		define["$interface"] = true;
+		JSA.$class(className,define);
+	}
+
 	JSA.$class = function(className,define){
 		if (className != null && typeof className !== 'string') {
 			throw new Error("[$class] Invalid class name '" + className + "' specified, must be a non-empty string");
@@ -153,12 +158,21 @@ JSA.$global = this;
 			JSAClass.prototype.$super = f_$super;
 
 			var SuperClassProto = SuperClass.prototype;
-			if(define["$implementation"]){
-				JSAClass.$impl = define["$implementation"]['$'+engine.lang];
-				JSAClass.prototype.$init = engine.$init(define["$init"]?define["$init"]['$'+engine.lang]:undefined);
+			let isInterface = false;
+			if(define["$interface"]){
+				isInterface = true;
+			}
+			if(define["$implementation"] || isInterface){
+				if(isInterface){
+					JSAClass.$impl = "$interface";
+					JSAClass.prototype.$init = engine.$init(undefined);
+				}else{
+					JSAClass.$impl = define["$implementation"]['$'+engine.lang];
+					JSAClass.prototype.$init = engine.$init(define["$init"]?define["$init"]['$'+engine.lang]:undefined);
+				}
 				for(var key in define){
 					if(key.charAt(0)==='$') continue;
-					if(define[key]["$setView"]){
+					if(define[key]["$main"]){
 						JSAClass.prototype[key] = engine.$function(define[key]["$"+engine.lang],true);
 					}
 					else{
@@ -168,7 +182,7 @@ JSA.$global = this;
 				JSAClass.fromNative = function(obj){
 					return new JSAClass({"$native":obj});
 				}
-				if(define.$static){
+				if(!isInterface && define.$static){
 					var staticDefine = define.$static;
 					for(var key in staticDefine){
 						if(key.charAt(0)=== '$'){
@@ -240,6 +254,7 @@ JSA.$global = this;
 }($engine));
 
 $class = JSA.$class;
+$interface = JSA.$interface;
 $import = JSA.$import;
 $newClass = JSA.$newClass;
 $classFunction = JSA.$classFunction;

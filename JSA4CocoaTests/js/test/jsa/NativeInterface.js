@@ -1,24 +1,5 @@
-$class("test.jsa.NativeObject",{
-	$implementation:{
-		$java : "test.java.JavaObject",
-		$oc : "TestOCObject",
-	},
-	$init:{
-		$oc:[
-			"initWithString:Int:",
-			"initWithNSDictionary:"
-		]
-	},
-	$static:{
-		staticA:{
-			$java : "staticA",
-			$oc : "staticA"
-		},
-		$init:{
-			$java : "initWithParam",
-			$oc : "initWithParam:"
-		}
-	},
+
+$interface("test.jsa.NativeInterface",{
 	getS:{
 		$java : "getS",
 		$oc : "getS"
