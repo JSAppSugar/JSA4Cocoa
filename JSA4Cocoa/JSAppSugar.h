@@ -147,7 +147,16 @@
  @param arguments The arguments to pass to the function.
  @return The return value of the function call.
  */
--(id) invokeClass:(NSString*) className Method:(NSString *)method Arguments:(NSArray *)arguments;
+-(id) invokeClass:(NSString *) className Method:(NSString *)method Arguments:(NSArray *)arguments;
+
+/*!
+@method
+@abstract Get the static variable of a JSA class
+@param variable The name of a static variable
+@param className The name of a JSA class
+@return The return value of the function call.
+*/
+-(id) staticVariable:(NSString *) variable Class:(NSString *) className;
 
 /*!
  @method

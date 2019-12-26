@@ -21,6 +21,7 @@
     
     JSValue *f_newClass;
     JSValue *f_classFunction;
+    JSValue *f_classStaticVariable;
 }
 
 -(instancetype) init{
@@ -92,6 +93,7 @@
         [_jsContext evaluateScript: jsaScript];
         f_newClass = _jsContext[@"$newClass"];
         f_classFunction = _jsContext[@"$classFunction"];
+        f_classStaticVariable = _jsContext[@"$classStaticVariable"];
         JSValue *f_retrieve = _jsContext[@"$js_retrieve"];
         _jsContext[@"$oc_new"] = ^(NSString *className,NSString* initMethod,NSArray *arguments){
             arguments = [JSAConvertor js2ocWithParamObject:arguments Retrieve:f_retrieve];
@@ -135,6 +137,12 @@
     [self loadJSClassWithName:className];
     arguments = [JSAConvertor oc2jsWithObject:arguments];
     JSValue* value = [f_classFunction callWithArguments:@[className,method,arguments]];
+    return [JSAConvertor js2ocWithReturnJSValue:value];
+}
+
+-(id) staticVariable:(NSString *) variable Class:(NSString *) className{
+    [self loadJSClassWithName:className];
+    JSValue* value = [f_classStaticVariable callWithArguments:@[className,variable]];
     return [JSAConvertor js2ocWithReturnJSValue:value];
 }
 

@@ -172,6 +172,10 @@
         XCTAssertEqualObjects(@"aa", a);
     }
     {
+        NSString* a = [jsa staticVariable:@"staticA" Class:@"test.jsa.TestObject"];
+        XCTAssertEqualObjects(@"a", a);
+    }
+    {
         id<JSAObject> testObject = [jsa newClass:@"test.jsa.TestObject"];
         NSString* r = [testObject invokeMethod:@"testNativeStatic"];
         XCTAssertEqualObjects(@"a", r);
